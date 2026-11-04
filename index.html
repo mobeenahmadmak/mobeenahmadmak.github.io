@@ -123,6 +123,15 @@ body{font-size:16px;line-height:1.75}
  .skill,.project,.edu{padding:23px}
 }
 
+
+/* Profile portrait in the homepage hero */
+.hero-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);align-items:center;gap:54px}
+.hero-portrait{justify-self:end;width:min(100%,390px);position:relative;isolation:isolate}
+.hero-portrait:before{content:"";position:absolute;inset:18px -16px -16px 18px;border:1px solid rgba(234,215,178,.55);border-radius:22px;z-index:-1}
+.hero-portrait img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 24%;border-radius:20px;border:1px solid rgba(234,215,178,.28);box-shadow:0 28px 75px rgba(0,0,0,.38)}
+@media(max-width:760px){.hero-layout{grid-template-columns:1fr;gap:38px}.hero-portrait{justify-self:center;width:min(78%,330px);margin:8px auto 0}.hero-portrait:before{inset:12px -10px -10px 12px}}
+@media(min-width:761px) and (max-width:980px){.hero-layout{gap:28px;grid-template-columns:minmax(0,1.2fr) minmax(240px,.8fr)}.hero-portrait{width:min(100%,320px)}}
+
 </style>
 </head>
 <body>
@@ -139,7 +148,7 @@ body{font-size:16px;line-height:1.75}
 <div class="hero-meta"><span>15+ years of experience</span><span>IFRS &amp; FP&amp;A</span><span>VAT &amp; ZATCA</span></div>
 <div class="actions"><a class="btn btn-gold" href="#contact">Let’s connect&nbsp; ↗</a><a class="btn btn-outline" href="#experience">Explore experience</a></div>
 <div class="stats"><div class="stat"><b>15+</b><small>Years of experience</small></div><div class="stat"><b>3</b><small>Industry sectors</small></div><div class="stat"><b>6</b><small>ERP &amp; fintech projects</small></div></div>
-</div></div></section>
+</div><div class="hero-portrait"><img src="mobeen-ahmad.jpg.png" alt="Mobeen Ahmad, Accounting Manager"></div></div></section>
 <section class="section" id="about"><div class="wrap"><div class="section-head"><div><div class="section-kicker">01 / Professional profile</div><h2>About me</h2><div class="gold-line"></div></div><p class="section-intro">A finance professional combining technical accounting expertise with commercial awareness, operational understanding and a strong focus on decision-useful reporting.</p></div>
 <div class="about-grid"><div class="about-copy"><p>Throughout my career, I have worked across financial accounting, management reporting, funding operations and finance management. My experience covers the full accounting cycle, financial statement preparation under IFRS, planning and forecasting, treasury, working capital management, tax compliance and audit coordination.</p><p>In my current role at NAYLAM, a Saudi premium chauffeur and ground transportation business, I lead core finance activities and support management with financial visibility, executive reporting, process improvement and finance systems integration.</p><p>I value clear communication, dependable numbers and controls that support the business without slowing it down.</p></div>
 <aside class="highlight-card"><h3>What I bring</h3><ul class="check-list"><li>IFRS financial reporting and month-end close</li><li>Budgeting, forecasting and KPI dashboards</li><li>Treasury, cash flow and working capital control</li><li>VAT, ZATCA and e-invoicing compliance</li><li>Audit coordination and internal controls</li><li>ERP implementation and finance integration</li></ul></aside></div></div></section>

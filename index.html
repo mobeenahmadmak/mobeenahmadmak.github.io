@@ -720,7 +720,7 @@ if('IntersectionObserver' in window){
 // Hero parallax and card spotlight, only for precise pointers
 if(!reduceMotion&&matchMedia('(hover:hover) and (pointer:fine)').matches){
  const hero=document.querySelector('.hero'),heroBg=hero.querySelector('.hero-bg');
- const layers=[...hero.querySelectorAll('[data-depth]')].map(el=>({el,depth:Number(el.dataset.depth)}));
+ const layers=[...hero.querySelectorAll('[data-depth]')].filter(el=>!el.closest('.hero-portrait')).map(el=>({el,depth:Number(el.dataset.depth)}));
  let targetX=0,targetY=0,currentX=0,currentY=0,frame=0;
  const render=()=>{
   currentX+=(targetX-currentX)*.07;currentY+=(targetY-currentY)*.07;

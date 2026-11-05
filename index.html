@@ -909,26 +909,7 @@ if(!reduceMotion&&matchMedia('(hover:hover) and (pointer:fine)').matches){
  document.addEventListener('pointermove',event=>{const card=event.target.closest&&event.target.closest('.fx');if(!card)return;const box=card.getBoundingClientRect();card.style.setProperty('--mx',event.clientX-box.left+'px');card.style.setProperty('--my',event.clientY-box.top+'px')},{passive:true});
 }
 
-/* Interactive project cards: accessible expand/collapse for project summaries */
-document.querySelectorAll('.project').forEach((card,index)=>{
- const copy=card.querySelector('p');
- if(!copy)return;
- copy.classList.add('project-copy','is-collapsed');
- const button=document.createElement('button');
- button.type='button';
- button.className='project-expand';
- button.setAttribute('aria-expanded','false');
- button.setAttribute('aria-label','Expand '+(card.querySelector('h3')?.textContent||'project')+' details');
- button.innerHTML='<span>Read project details</span><svg class="ico" aria-hidden="true"><use href="#i-chevron"/></svg>';
- button.addEventListener('click',()=>{
-  const expanded=button.getAttribute('aria-expanded')!=='true';
-  button.setAttribute('aria-expanded',String(expanded));
-  copy.classList.toggle('is-collapsed',!expanded);
-  button.querySelector('span').textContent=expanded?'Show less':'Read project details';
- });
- card.append(button);
-});
-
+/* Project cards remain concise; detailed narratives live in Case Studies. */
 /* Reveal hero intro even when a visitor lands on a deep-linked section */
 if(!reduceMotion){
  document.querySelectorAll('.hero-content > *').forEach(el=>el.classList.add('hero-intro-item'));
@@ -966,12 +947,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
 .btn:active,.contact-links a:active{transform:translateY(0) scale(.98)}
 .project{cursor:default;transform:translateZ(0);transition:transform .28s cubic-bezier(.2,.7,.2,1),border-color .28s,box-shadow .28s}
 .project:hover,.project:focus-within{transform:translateY(-5px);border-color:rgba(198,165,107,.48);box-shadow:0 24px 58px rgba(0,0,0,.28)}
-.project .project-expand{display:inline-flex;align-items:center;gap:7px;margin-top:13px;padding:5px 0;border:0;background:transparent;color:var(--gold2);font:600 12px "DM Sans",sans-serif;cursor:pointer}
-.project .project-expand .ico{transition:transform .25s}
-.project .project-expand[aria-expanded="true"] .ico{transform:rotate(180deg)}
-.project p.project-copy{overflow:hidden;transition:max-height .35s ease}
-.project p.project-copy.is-collapsed{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3}
-.project:focus-visible{outline:2px solid var(--gold2);outline-offset:4px}
 @view-transition{navigation:auto}
 ::view-transition-old(root){animation:maPageOut .18s ease both}
 ::view-transition-new(root){animation:maPageIn .28s ease both}

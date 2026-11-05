@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mobeenahmadmak.github.io/sitemap.xml

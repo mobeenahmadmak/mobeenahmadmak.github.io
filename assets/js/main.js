@@ -1,0 +1,126 @@
+const menu=document.getElementById('menu'),links=document.getElementById('links');
+menu.setAttribute('aria-controls','links');
+const closeMenu=()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'};
+menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'×':'☰'});
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu()});
+window.addEventListener('resize',()=>{if(window.innerWidth>760)closeMenu()});
+document.getElementById('year').textContent=new Date().getFullYear();
+const scrollTopButton=document.getElementById('scrollTop');
+const toggleScrollTop=()=>scrollTopButton.classList.toggle('visible',window.scrollY>400);
+window.addEventListener('scroll',toggleScrollTop,{passive:true});
+toggleScrollTop();
+scrollTopButton.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const root=document.documentElement,reduceMotion=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+// Dates and durations
+const toMonth=value=>{if(value==='now'){const d=new Date();return d.getFullYear()*12+d.getMonth()}const [y,m]=value.split('-').map(Number);return y*12+m-1};
+const span=(a,b)=>toMonth(b)-toMonth(a)+1;
+const plural=(n,word)=>`${n} ${word}${n===1?'':'s'}`;
+const formatMonths=total=>{const y=Math.floor(total/12),m=total%12;return [y&&plural(y,'yr'),m&&plural(m,'mo')].filter(Boolean).join(' ')};
+
+// Career chart
+const firstMonth=toMonth('2009-04'),lastMonth=toMonth('now')+1,monthRange=lastMonth-firstMonth;
+const position=month=>(month-firstMonth)/monthRange*100;
+const tickYears=[2010,2013,2016,2019,2022,2025];
+document.querySelectorAll('.g-row').forEach((row,index,rows)=>{
+ const bar=row.querySelector('.g-bar'),start=bar.dataset.start,end=bar.dataset.end,track=row.querySelector('.g-track');
+ bar.style.left=position(toMonth(start))+'%';
+ bar.style.width=(position(toMonth(end)+1)-position(toMonth(start)))+'%';
+ bar.style.setProperty('--d',(rows.length-1-index)*120+'ms');
+ row.querySelector('.g-dur').textContent=formatMonths(span(start,end));
+ tickYears.forEach(year=>{const line=document.createElement('i');line.style.left=position(year*12)+'%';track.prepend(line)});
+});
+const ticks=document.querySelector('.g-ticks');
+if(ticks)tickYears.forEach(year=>{const label=document.createElement('span');label.textContent=year;label.style.left=position(year*12)+'%';ticks.append(label)});
+
+// Sector chart
+document.querySelectorAll('[data-ranges]').forEach(item=>{
+ const months=item.dataset.ranges.split(',').reduce((sum,range)=>{const [a,b]=range.split(':');return sum+span(a,b)},0);
+ item.querySelector('.val').textContent=formatMonths(months);
+ document.querySelector(`.seg[data-sector="${item.dataset.sector}"]`).style.setProperty('--w',months);
+});
+
+// Collapsible responsibilities
+document.querySelectorAll('.job ul:not(.chips)').forEach((list,index)=>{
+ const items=list.children.length;
+ if(items<=3)return;
+ list.classList.add('collapsed');
+ list.id=list.id||`job-duties-${index}`;
+ const button=document.createElement('button');
+ button.type='button';button.className='job-more';button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls',list.id);
+ const setLabel=open=>{button.innerHTML=`<span>${open?'Show fewer':`Show all ${items} responsibilities`}</span><svg class="ico" aria-hidden="true"><use href="#i-chevron"/></svg>`};
+ setLabel(false);
+ button.addEventListener('click',()=>{const open=list.classList.toggle('collapsed')===false;list.classList.toggle('opened',open);button.setAttribute('aria-expanded',String(open));setLabel(open);scheduleScrollUpdate()});
+ list.after(button);
+});
+
+// Scroll reveal
+const revealTargets=document.querySelectorAll('.section-head,.about-copy,.sector-card,.bring,.skill,.flow,.gantt,.job,.project,.edu,.contact');
+const showCounters=el=>el.querySelectorAll('[data-count]').forEach(animateCount);
+if(reduceMotion||!('IntersectionObserver' in window)){
+ revealTargets.forEach(el=>el.classList.add('in'));
+}else{
+ const finish=el=>setTimeout(()=>el.classList.remove('reveal'),1400);
+ const revealObserver=new IntersectionObserver((entries,observer)=>entries.forEach(entry=>{
+  if(!entry.isIntersecting)return;
+  entry.target.classList.add('in');finish(entry.target);observer.unobserve(entry.target);
+ }),{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+ revealTargets.forEach(el=>{
+  const siblings=[...el.parentElement.children].filter(child=>child.matches('.skill,.project,.edu'));
+  if(siblings.length)el.style.setProperty('--d',siblings.indexOf(el)%3*80+'ms');
+  el.classList.add('reveal');revealObserver.observe(el);
+ });
+}
+
+// Headline numbers
+function animateCount(el){
+ const target=Number(el.dataset.count),suffix=el.dataset.suffix||'',started=performance.now(),duration=1300;
+ const step=now=>{const t=Math.min((now-started)/duration,1),eased=1-Math.pow(1-t,3);el.textContent=Math.round(target*eased)+suffix;if(t<1)requestAnimationFrame(step)};
+ requestAnimationFrame(step);
+}
+if(!reduceMotion)setTimeout(()=>showCounters(document.querySelector('.stats')),500);
+
+// Scroll progress, header state and timeline rail
+const progress=document.getElementById('progress'),topbar=document.querySelector('.topbar'),timeline=document.querySelector('.timeline'),railFill=document.querySelector('.rail-fill');
+let scrollQueued=false;
+function updateScroll(){
+ scrollQueued=false;
+ const max=root.scrollHeight-innerHeight;
+ progress.style.transform=`scaleX(${max>0?Math.min(scrollY/max,1):0})`;
+ topbar.classList.toggle('scrolled',scrollY>12);
+ const box=timeline.getBoundingClientRect();
+ const done=(innerHeight*.65-box.top)/box.height;
+ railFill.style.transform=`scaleY(${Math.max(0,Math.min(done,1))})`;
+}
+function scheduleScrollUpdate(){if(!scrollQueued){scrollQueued=true;requestAnimationFrame(updateScroll)}}
+addEventListener('scroll',scheduleScrollUpdate,{passive:true});
+addEventListener('resize',scheduleScrollUpdate);
+updateScroll();
+
+// Active navigation link
+const navLinks=[...links.querySelectorAll('a[href^="#"]')];
+if('IntersectionObserver' in window){
+ const spy=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  if(!entry.isIntersecting)return;
+  navLinks.forEach(link=>{const active=link.getAttribute('href')==='#'+entry.target.id;link.classList.toggle('active',active);if(active)link.setAttribute('aria-current','true');else link.removeAttribute('aria-current')});
+ }),{rootMargin:'-40% 0px -55% 0px'});
+ document.querySelectorAll('main section').forEach(section=>spy.observe(section));
+}
+
+/* Project cards remain concise; detailed narratives live in Case Studies. */
+/* Reveal hero intro even when a visitor lands on a deep-linked section */
+if(!reduceMotion){
+ document.querySelectorAll('.hero-content > *').forEach(el=>el.classList.add('hero-intro-item'));
+}
+
+/* Smooth section navigation with a small focus handoff for keyboard users */
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+ anchor.addEventListener('click',()=>{
+  const target=document.querySelector(anchor.getAttribute('href'));
+  if(target&&target.matches('section')) {
+   if(!target.hasAttribute('tabindex'))target.setAttribute('tabindex','-1');
+   window.setTimeout(()=>target.focus({preventScroll:true}),450);
+  }
+ });
+});

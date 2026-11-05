@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <script>document.documentElement.classList.add('js')</script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0b0e13">
 <meta name="description" content="Mobeen Ahmad is an Accounting Manager in Jeddah, Saudi Arabia, with 15+ years of experience in IFRS financial reporting, accounting, FP&amp;A, treasury, VAT, ZATCA compliance and ERP implementation.">
 <meta name="author" content="Mobeen Ahmad">
@@ -509,6 +509,125 @@ html:not(.js) .gantt{display:none}
  .topbar,.progress,.scroll-top,.hero-bg,.job-more{display:none!important}
  .js .reveal{opacity:1!important;transform:none!important}
  .job ul.collapsed li{display:list-item!important}
+}
+
+
+/* Cross-device responsive refinement: Android Chrome and iOS Safari */
+html{scroll-padding-top:calc(72px + env(safe-area-inset-top))}
+body{overflow-x:clip}
+.wrap{width:min(var(--max),calc(100% - 48px))}
+img,svg{max-width:100%}
+button,a{-webkit-tap-highlight-color:transparent}
+@media(min-width:761px) and (max-width:1024px){
+ .wrap{width:calc(100% - 48px)}
+ .links{gap:clamp(10px,1.5vw,16px);font-size:11px}
+ .nav-cta{padding:8px 11px}
+ .hero-layout{grid-template-columns:minmax(0,1.15fr) minmax(210px,.85fr);gap:26px}
+ .hero-portrait{width:min(100%,300px)}
+ .hero h1{font-size:clamp(42px,5.8vw,62px)}
+ .about-grid{grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);gap:28px}
+ .g-row,.g-axis{grid-template-columns:160px minmax(0,1fr) 72px;column-gap:10px}
+ .job{grid-template-columns:150px minmax(0,1fr);gap:18px}
+ .contact{align-items:flex-start;flex-direction:column}
+ .contact-links{max-width:none}
+}
+@media(max-width:760px){
+ html{scroll-padding-top:calc(68px + env(safe-area-inset-top))}
+ body{min-width:320px}
+ .wrap{width:calc(100% - 34px)}
+ .topbar{padding-top:env(safe-area-inset-top);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+ .nav{height:66px;gap:12px}
+ .brand{min-width:0;flex:1}
+ .brand strong{font-size:11px;white-space:nowrap}
+ .brand small{font-size:8px;letter-spacing:.14em}
+ .menu{width:44px;height:44px;min-width:44px;min-height:44px}
+ .links{top:calc(66px + env(safe-area-inset-top));max-height:calc(100dvh - 66px - env(safe-area-inset-top));overflow-y:auto;overscroll-behavior:contain}
+ .hero{padding:58px 0 48px}
+ .hero-layout{grid-template-columns:minmax(0,1fr);gap:30px}
+ .hero-content{min-width:0}
+ .hero h1{font-size:clamp(38px,9.5vw,56px);line-height:1.08;overflow-wrap:normal}
+ .hero-copy{font-size:15px;line-height:1.75}
+ .hero-meta{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+ .actions{display:grid;grid-template-columns:minmax(0,1fr);max-width:420px;width:100%}
+ .actions .btn{width:100%;min-height:48px}
+ .hero-portrait{width:min(76vw,290px);justify-self:center;margin:0 auto 8px}
+ .stats{width:100%;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:36px}
+ .stat{min-width:0;padding:16px 7px 0 0}
+ .stat b{font-size:clamp(22px,6.2vw,29px)}
+ .stat small{font-size:clamp(8px,2.2vw,10px);line-height:1.4;letter-spacing:.04em;overflow-wrap:anywhere}
+ .section{padding:58px 0}
+ .section-head{display:block;margin-bottom:26px}
+ .section-intro{margin-top:12px}
+ .about-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+ .highlight-card,.sector-card,.bring,.flow,.gantt,.contact{min-width:0}
+ .bring{flex-direction:column;align-items:flex-start;gap:14px;padding:19px}
+ .bring h3{white-space:normal}
+ .bring ul{width:100%;grid-template-columns:repeat(2,minmax(0,1fr));justify-content:stretch;gap:11px}
+ .bring li{white-space:normal;min-width:0;font-size:12px}
+ .sector-card{padding:20px}
+ .sector-list li{grid-template-columns:10px minmax(0,1fr) auto;column-gap:8px;font-size:13px}
+ .sector-list small{font-size:11px}
+ .skill-grid,.project-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .skill,.project{min-width:0;padding:19px;min-height:0}
+ .skill h3,.project h3{font-size:15px;overflow-wrap:anywhere}
+ .skill p,.project p{font-size:12px;line-height:1.7}
+ .project-top{align-items:flex-start;min-width:0}
+ .project-top span:last-child{min-width:0;overflow-wrap:anywhere}
+ .project.wide{grid-column:auto}
+ .flow{padding:21px;margin-top:28px}
+ .flow ol{grid-template-columns:minmax(0,1fr);gap:18px}
+ .flow li{min-width:0}
+ .gantt{padding:18px 14px 14px;overflow:hidden}
+ .g-row,.g-axis{grid-template-columns:minmax(0,1fr) auto;column-gap:8px}
+ .g-label b{font-size:12px;overflow-wrap:anywhere}
+ .g-label small{font-size:10px}
+ .g-dur{font-size:11px}
+ .g-track{min-width:0}
+ .g-ticks span{font-size:9px}
+ .timeline{padding-left:22px}
+ .job{min-width:0;grid-template-columns:minmax(0,1fr);gap:8px;padding:20px}
+ .job-date{font-size:10px}
+ .job h3{font-size:17px}
+ .job .company{font-size:12px;overflow-wrap:anywhere}
+ .job p,.job li{font-size:12px;line-height:1.75;overflow-wrap:anywhere}
+ .chips li{font-size:11px;max-width:100%;overflow-wrap:anywhere}
+ .edu-grid{grid-template-columns:minmax(0,1fr);gap:11px}
+ .edu,.edu:nth-child(n+4),.edu:last-child{grid-column:auto;min-width:0;padding:20px}
+ .edu h3{font-size:14px;overflow-wrap:anywhere}
+ .contact{display:flex;flex-direction:column;align-items:stretch;gap:20px;padding:24px}
+ .contact h2{font-size:clamp(25px,7vw,34px)}
+ .contact-links{display:grid;grid-template-columns:minmax(0,1fr);width:100%;gap:9px}
+ .contact-links a{justify-content:center;min-height:46px}
+ .footer{padding-bottom:calc(24px + env(safe-area-inset-bottom));line-height:1.7}
+ .scroll-top{right:15px;bottom:calc(15px + env(safe-area-inset-bottom))}
+}
+@media(max-width:520px){
+ .skill-grid,.project-grid{grid-template-columns:minmax(0,1fr)}
+ .bring ul{grid-template-columns:minmax(0,1fr)}
+ .skill,.project{padding:21px}
+ .project.wide{grid-column:auto}
+ .edu-grid{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:380px){
+ .wrap{width:calc(100% - 30px)}
+ .hero{padding-top:48px}
+ .hero h1{font-size:clamp(36px,10vw,42px)}
+ .hero-portrait{width:min(78vw,260px)}
+ .stats{gap:3px}
+ .stat{padding-right:4px}
+ .stat b{font-size:21px}
+ .stat small{font-size:8px;letter-spacing:.02em}
+ .gantt{padding-left:11px;padding-right:11px}
+ .g-label b{font-size:11px}
+ .g-dur{font-size:10px}
+ .contact{padding:20px}
+}
+@media(hover:none){
+ .skill:hover,.project:hover,.job:hover,.edu:hover{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*::before,*::after{scroll-behavior:auto!important}
 }
 
 </style>

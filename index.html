@@ -177,6 +177,95 @@ img{max-width:100%;height:auto}
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+/* Mobile and tablet refinement for iOS Safari and Android Chrome */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:calc(82px + env(safe-area-inset-top))}
+body{min-width:320px}
+button,a{-webkit-touch-callout:none}
+.hero h1{text-wrap:balance}
+.section h2,.contact h2{text-wrap:balance}
+.hero-copy,.section-intro,.about-copy,.skill p,.project p,.job p,.job li,.edu p,.contact p{overflow-wrap:break-word}
+.hero-portrait img{display:block}
+@media(min-width:761px) and (max-width:1024px){
+ .wrap{width:calc(100% - 56px)}
+ .nav{height:74px}
+ .links{gap:15px;font-size:11px}
+ .nav-cta{padding:9px 12px}
+ .hero{padding:94px 0 78px}
+ .hero-layout{grid-template-columns:minmax(0,1.15fr) minmax(220px,.85fr);gap:30px}
+ .hero h1{font-size:clamp(44px,6vw,64px)}
+ .hero-portrait{width:min(100%,310px)}
+ .about-grid{gap:34px}
+ .job{grid-template-columns:165px minmax(0,1fr);gap:20px;padding:25px}
+ .skill-grid,.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .contact{padding:32px;gap:20px}
+ .contact-links{max-width:250px}
+}
+@media(max-width:760px){
+ html{scroll-padding-top:74px}
+ .wrap{width:calc(100% - 36px)}
+ .topbar{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+ .nav{height:68px}
+ .brand{gap:9px;min-width:0}
+ .brand strong{font-size:11px}
+ .brand small{font-size:8px}
+ .monogram{width:38px;height:38px;flex:0 0 38px}
+ .menu{width:44px;height:44px;display:grid;place-items:center;padding:0;flex:0 0 44px;cursor:pointer}
+ .links{top:68px;padding:18px 22px calc(22px + env(safe-area-inset-bottom));gap:0;box-shadow:0 16px 28px rgba(0,0,0,.28)}
+ .links a{display:flex;align-items:center;min-height:46px;width:100%;font-size:14px}
+ .links .nav-cta{width:auto;min-height:42px;margin-top:8px;padding:9px 15px}
+ .hero{padding:68px 0 58px}
+ .hero-layout{grid-template-columns:minmax(0,1fr);gap:34px}
+ .hero-content{min-width:0}
+ .hero h1{font-size:clamp(39px,9.2vw,58px);line-height:1.08;letter-spacing:-.055em;margin:18px 0 15px}
+ .hero-copy{font-size:15px;line-height:1.75}
+ .hero-meta{display:grid;grid-template-columns:1fr;gap:9px;margin:22px 0 25px}
+ .actions{display:grid;grid-template-columns:1fr;gap:10px;max-width:360px}
+ .actions .btn{width:100%;min-height:48px;padding:12px 16px}
+ .stats{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:42px}
+ .stat{padding:18px 8px 0 0;min-width:0}
+ .stat b{font-size:clamp(23px,6vw,30px)}
+ .stat small{display:block;font-size:clamp(8px,2.1vw,10px);line-height:1.45;letter-spacing:.06em}
+ .hero-portrait{width:min(72%,290px);margin:0 auto 8px}
+ .section{padding:62px 0}
+ .section-head{margin-bottom:28px}
+ .section-intro{font-size:14px;line-height:1.7}
+ .about-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+ .highlight-card{padding:23px}
+ .skill-grid,.project-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .skill,.project{min-width:0;padding:19px;min-height:0}
+ .skill h3,.project h3{font-size:15px}
+ .skill p,.project p{font-size:12px;line-height:1.7}
+ .job{grid-template-columns:minmax(0,1fr);gap:9px;padding:21px}
+ .job-date{font-size:10px}
+ .job h3{font-size:17px}
+ .job .company{font-size:12px;line-height:1.65;overflow-wrap:anywhere}
+ .job p,.job li{font-size:12px;line-height:1.75}
+ .edu-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+ .edu{padding:21px}
+ .contact{display:flex;flex-direction:column;align-items:flex-start;gap:22px;padding:25px}
+ .contact h2{font-size:clamp(26px,7vw,34px)}
+ .contact-links{width:100%;display:grid;grid-template-columns:1fr;gap:9px}
+ .contact-links a{justify-content:center;min-height:46px}
+ .footer{padding:24px 0 calc(24px + env(safe-area-inset-bottom));line-height:1.7}
+ .scroll-top{right:16px;bottom:calc(16px + env(safe-area-inset-bottom))}
+}
+@media(max-width:380px){
+ .wrap{width:calc(100% - 30px)}
+ .brand strong{font-size:10px}
+ .hero{padding-top:58px}
+ .hero h1{font-size:39px}
+ .stats{gap:4px}
+ .stat b{font-size:23px}
+ .stat small{font-size:8px}
+ .skill-grid,.project-grid{grid-template-columns:minmax(0,1fr)}
+ .skill,.project{padding:21px}
+ .contact{padding:21px}
+}
+@media(hover:none){
+ .skill:hover,.project:hover,.job:hover{transform:none;box-shadow:0 18px 48px rgba(0,0,0,.16)}
+}
+
 </style>
 </head>
 <body>
@@ -232,8 +321,12 @@ img{max-width:100%;height:auto}
 <footer class="wrap footer"><span>© <span id="year"></span> Mobeen Ahmad. All rights reserved.</span><span>Jeddah, Saudi Arabia · IFRS · FP&amp;A · ZATCA</span></footer>
 <script>
 const menu=document.getElementById('menu'),links=document.getElementById('links');
+menu.setAttribute('aria-controls','links');
+const closeMenu=()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'};
 menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'×':'☰'});
-links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'}));
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu()});
+window.addEventListener('resize',()=>{if(window.innerWidth>760)closeMenu()});
 document.getElementById('year').textContent=new Date().getFullYear();
 const scrollTopButton=document.getElementById('scrollTop');
 const toggleScrollTop=()=>scrollTopButton.classList.toggle('visible',window.scrollY>400);

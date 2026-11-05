@@ -393,7 +393,12 @@ html:not(.js) .gantt{display:none}
 .g-bar{position:absolute;top:50%;height:12px;margin-top:-6px;min-width:7px;border-radius:4px;background:var(--gold);opacity:.82;transform-origin:0 50%;transition:transform .9s cubic-bezier(.2,.7,.2,1),opacity .2s;transition-delay:var(--d,0ms),0ms}
 .js .gantt:not(.in) .g-bar{transform:scaleX(0)}
 .g-row:hover .g-bar{opacity:1}
-.g-row.now .g-bar{background:var(--gold2);opacity:1}
+.g-row.now .g-bar{opacity:1}
+/* Career timeline colors aligned with the sector palette */
+.g-row[href="#job-manager"] .g-bar{background:#c9759a}
+.g-row[href="#job-senior"] .g-bar{background:#4a84cc}
+.g-row[href="#job-funding"] .g-bar,.g-row[href="#job-accountant"] .g-bar,.g-row[href="#job-trainee"] .g-bar{background:#b58a33}
+.g-row[href="#job-teacher"] .g-bar{background:#8c78bd}
 .g-dur{font-size:12px;font-weight:600;color:var(--gold2);text-align:right;white-space:nowrap;padding-right:6px;font-variant-numeric:tabular-nums}
 .g-axis{margin-top:4px}
 .g-ticks{position:relative;height:18px}

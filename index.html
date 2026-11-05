@@ -631,6 +631,52 @@ button,a{-webkit-tap-highlight-color:transparent}
  *,*::before,*::after{scroll-behavior:auto!important}
 }
 
+
+/* Alternating section backgrounds with restrained gold ambient lighting */
+.section{
+ position:relative;
+ isolation:isolate;
+ border-top:1px solid rgba(198,165,107,.12);
+}
+#about{
+ background:
+  radial-gradient(ellipse at 12% 18%,rgba(198,165,107,.055),transparent 38%),
+  linear-gradient(135deg,#111e30 0%,#0d1726 58%,#101a29 100%);
+}
+#expertise{
+ background:
+  radial-gradient(ellipse at 88% 16%,rgba(198,165,107,.045),transparent 34%),
+  linear-gradient(135deg,#0a101a 0%,#0d131e 55%,#090f18 100%);
+}
+#experience{
+ background:
+  radial-gradient(ellipse at 8% 78%,rgba(198,165,107,.05),transparent 36%),
+  linear-gradient(135deg,#122036 0%,#0e192a 55%,#101b2c 100%);
+}
+#projects{
+ background:
+  radial-gradient(ellipse at 92% 22%,rgba(198,165,107,.05),transparent 36%),
+  linear-gradient(135deg,#090f18 0%,#101722 52%,#0b111b 100%);
+}
+#education{
+ background:
+  radial-gradient(ellipse at 16% 12%,rgba(198,165,107,.05),transparent 36%),
+  linear-gradient(135deg,#142135 0%,#101b2b 58%,#111d2e 100%);
+}
+#contact{
+ background:
+  radial-gradient(ellipse at 84% 70%,rgba(198,165,107,.045),transparent 38%),
+  linear-gradient(135deg,#090f18 0%,#101722 100%);
+}
+.section-head,.about-grid,.skill-grid,.timeline,.project-grid,.edu-grid,.contact{
+ position:relative;
+}
+@media(max-width:760px){
+ #about,#expertise,#experience,#projects,#education,#contact{
+  background-size:100% 100%;
+ }
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Mobeen Ahmad","jobTitle":"Accounting Manager","url":"https://mobeenahmadmak.github.io/","image":"https://mobeenahmadmak.github.io/mobeen-ahmad.jpg.png","email":"mailto:mobeenahmadmak@gmail.com","sameAs":["https://www.linkedin.com/in/mobeenahmadmak/"],"address":{"@type":"PostalAddress","addressLocality":"Jeddah","addressCountry":"SA"}}</script>
 </head>

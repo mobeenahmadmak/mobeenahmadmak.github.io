@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0e13">
+<meta name="description" content="A portfolio case study by Mobeen Ahmad covering management reporting, revenue analytics, business segmentation and financial performance monitoring.">
+<title>Finance Analytics & Management Reporting | Mobeen Ahmad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0e13;--panel:#111720;--panel2:#151d27;--gold:#c9aa72;--gold2:#e3cc9e;--text:#f1eee8;--muted:#a6a9ad;--line:rgba(201,170,114,.2);--blue:#6c9bd2;--teal:#72b5a3;--rose:#c77e9b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;line-height:1.6}a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 44px));margin:auto}
+header{border-bottom:1px solid rgba(255,255,255,.07);background:rgba(11,14,19,.9);position:sticky;top:0;z-index:5;backdrop-filter:blur(16px)}.nav{height:72px;display:flex;justify-content:space-between;align-items:center}.brand{font:800 13px Manrope;letter-spacing:.08em}.brand span{display:block;color:var(--gold);font:600 10px "DM Sans";letter-spacing:.15em;text-transform:uppercase}.back{border:1px solid var(--line);border-radius:24px;padding:9px 15px;color:var(--gold2);font-size:12px}
+.hero{padding:78px 0 52px;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-100px;top:-220px;width:540px;height:540px;border-radius:50%;background:radial-gradient(circle,rgba(201,170,114,.13),transparent 68%);pointer-events:none}.kicker{color:var(--gold);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}.hero h1{font:800 clamp(34px,5.8vw,62px)/1.1 Manrope;letter-spacing:-.05em;max-width:850px;margin:15px 0}.hero h1 em{font-style:normal;color:var(--gold2)}.intro{color:#b8bbc0;max-width:750px;font-size:16px}.pills{display:flex;gap:9px;flex-wrap:wrap;margin-top:25px}.pill{border:1px solid var(--line);border-radius:30px;padding:7px 12px;color:#d4d0c7;font-size:11px}
+.notice{border:1px solid rgba(108,155,210,.3);background:rgba(108,155,210,.08);border-radius:12px;padding:13px 16px;color:#c5d4e5;font-size:12px;margin:14px 0 28px}.notice strong{color:#e4edf7}
+.section{padding:42px 0;border-top:1px solid rgba(255,255,255,.07)}.section h2{font:700 27px Manrope;letter-spacing:-.035em;margin:0 0 7px}.sub{color:var(--muted);font-size:13px;margin:0 0 23px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid rgba(255,255,255,.08);border-radius:17px;padding:20px;min-width:0;transition:transform .25s,border-color .25s,box-shadow .25s}.card:hover{transform:translateY(-3px);border-color:rgba(201,170,114,.35);box-shadow:0 18px 45px rgba(0,0,0,.2)}.card h3{font:700 15px Manrope;margin:0 0 4px}.card p{font-size:11px;color:var(--muted);margin:0 0 15px}.chart{width:100%;height:auto;display:block;overflow:visible}.legend{display:flex;gap:15px;flex-wrap:wrap;color:#b8bbc0;font-size:10px;margin-top:10px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px}.bars{display:flex;align-items:end;gap:clamp(7px,2vw,18px);height:155px;padding:12px 8px 0;border-bottom:1px solid rgba(255,255,255,.14)}.barcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:end;height:100%;gap:7px}.bar{width:min(34px,75%);height:var(--h);background:linear-gradient(180deg,var(--gold2),#8e7043);border-radius:6px 6px 2px 2px;transform-origin:bottom;animation:grow .8s ease both}.barcol small{font-size:9px;color:var(--muted)}@keyframes grow{from{transform:scaleY(.05)}to{transform:scaleY(1)}}
+.mix{display:grid;gap:13px}.mixrow{display:grid;grid-template-columns:115px 1fr 38px;gap:10px;align-items:center;font-size:11px;color:#d0d1d2}.track{height:9px;border-radius:10px;background:#252d38;overflow:hidden}.fill{height:100%;width:var(--w);background:var(--c);border-radius:10px;animation:fill 1s ease both;transform-origin:left}@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:25px 0}.metric{background:var(--panel);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px}.metric b{font:800 22px Manrope;color:var(--gold2);display:block}.metric span{font-size:10px;color:var(--muted)}
+.workflow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.step{padding:17px;border:1px solid var(--line);border-radius:13px;background:#111720}.step b{font:700 12px Manrope;color:var(--gold2);display:block;margin-bottom:5px}.step span{font-size:11px;color:var(--muted)}
+.value{display:grid;grid-template-columns:1fr 1fr;gap:18px}.value article{padding:20px;border-radius:15px;background:var(--panel);border:1px solid rgba(255,255,255,.07)}.value h3{font:700 14px Manrope;margin:0 0 9px}.value ul{padding-left:17px;margin:0;color:#b8bbc0;font-size:12px}.value li{margin:6px 0}
+footer{border-top:1px solid rgba(255,255,255,.07);padding:25px 0 40px;color:var(--muted);font-size:11px}.footrow{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+@media(max-width:700px){.grid,.value{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.workflow{grid-template-columns:repeat(2,1fr)}.hero{padding-top:55px}.mixrow{grid-template-columns:95px 1fr 32px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="index.html">MOBEEN AHMAD<span>Finance &amp; Accounting</span></a><a class="back" href="index.html#projects">← Back to portfolio</a></div></header>
+<main>
+<section class="hero wrap">
+<div class="kicker">Portfolio case study · Management reporting</div>
+<h1>Finance Analytics &amp;<br><em>Management Reporting</em></h1>
+<p class="intro">A management reporting solution designed to bring revenue performance, operational activity and financial indicators into one consolidated view, helping leadership review trends, compare performance and explore business drivers.</p>
+<div class="pills"><span class="pill">Revenue analytics</span><span class="pill">Performance monitoring</span><span class="pill">Business segmentation</span><span class="pill">Management insights</span></div>
+<div class="notice"><strong>Portfolio demonstration:</strong> This public case study uses illustrative visual data to demonstrate dashboard structure and analytical capabilities. It does not reproduce NAYLAM's confidential financial figures, customer information or supplier details.</div>
+<div class="metrics">
+<div class="metric"><b>2020–2026</b><span>Historical reporting coverage</span></div>
+<div class="metric"><b>10+</b><span>Analytical dimensions represented</span></div>
+<div class="metric"><b>4</b><span>Core reporting perspectives</span></div>
+<div class="metric"><b>1</b><span>Consolidated management view</span></div>
+</div>
+</section>
+<section class="section"><div class="wrap"><h2>Dashboard overview</h2><p class="sub">Examples of the analytical views included in the management reporting framework.</p>
+<div class="grid">
+<article class="card"><h3>Revenue trend &amp; comparison</h3><p>Illustrative indexed trend, with the first period normalized to 100.</p>
+<div class="bars" aria-label="Illustrative indexed revenue trend">
+<div class="barcol"><div class="bar" style="--h:35%"></div><small>2020</small></div><div class="barcol"><div class="bar" style="--h:43%"></div><small>2021</small></div><div class="barcol"><div class="bar" style="--h:53%"></div><small>2022</small></div><div class="barcol"><div class="bar" style="--h:66%"></div><small>2023</small></div><div class="barcol"><div class="bar" style="--h:79%"></div><small>2024</small></div><div class="barcol"><div class="bar" style="--h:82%"></div><small>2025</small></div><div class="barcol"><div class="bar" style="--h:100%"></div><small>2026</small></div></div><div class="legend"><span><i class="dot" style="background:var(--gold)"></i>Illustrative index only</span></div></article>
+<article class="card"><h3>Revenue segmentation</h3><p>Illustrative service contribution categories, not actual company percentages.</p><div class="mix">
+<div class="mixrow"><span>City to City</span><div class="track"><div class="fill" style="--w:82%;--c:var(--gold)"></div></div><b>—</b></div>
+<div class="mixrow"><span>Hourly Service</span><div class="track"><div class="fill" style="--w:63%;--c:var(--blue)"></div></div><b>—</b></div>
+<div class="mixrow"><span>Airport Pickup</span><div class="track"><div class="fill" style="--w:49%;--c:var(--teal)"></div></div><b>—</b></div>
+<div class="mixrow"><span>Airport Drop-off</span><div class="track"><div class="fill" style="--w:44%;--c:var(--rose)"></div></div><b>—</b></div>
+<div class="mixrow"><span>Other services</span><div class="track"><div class="fill" style="--w:25%;--c:#8b94a3"></div></div><b>—</b></div>
+</div><div class="legend">Categories reflect the source dashboard; bar lengths are decorative examples.</div></article>
+<article class="card"><h3>Cost &amp; margin monitoring</h3><p>Illustrative monthly monitoring of revenue against key operating cost ratios.</p>
+<svg class="chart" viewBox="0 0 480 190" role="img" aria-label="Illustrative trend lines for revenue and cost ratios"><g stroke="#303947" stroke-width="1"><path d="M35 25H465M35 65H465M35 105H465M35 145H465"/></g><polyline points="40,126 105,113 170,96 235,103 300,72 365,61 430,35" fill="none" stroke="#e3cc9e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><polyline points="40,75 105,83 170,92 235,80 300,96 365,104 430,110" fill="none" stroke="#72b5a3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g fill="#e3cc9e"><circle cx="40" cy="126" r="3"/><circle cx="105" cy="113" r="3"/><circle cx="170" cy="96" r="3"/><circle cx="235" cy="103" r="3"/><circle cx="300" cy="72" r="3"/><circle cx="365" cy="61" r="3"/><circle cx="430" cy="35" r="3"/></g><g fill="#a6a9ad" font-size="10"><text x="35" y="169">Jan</text><text x="100" y="169">Feb</text><text x="165" y="169">Mar</text><text x="230" y="169">Apr</text><text x="295" y="169">May</text><text x="360" y="169">Jun</text><text x="425" y="169">Jul</text></g></svg><div class="legend"><span><i class="dot" style="background:var(--gold2)"></i>Revenue index</span><span><i class="dot" style="background:var(--teal)"></i>Cost ratio illustration</span></div></article>
+<article class="card"><h3>Payment channel &amp; operations</h3><p>Reporting views for payment methods, outsourced bookings and daily activity.</p><div class="mix">
+<div class="mixrow"><span>BNPL channels</span><div class="track"><div class="fill" style="--w:75%;--c:var(--gold)"></div></div><b>View</b></div>
+<div class="mixrow"><span>Outsourced trips</span><div class="track"><div class="fill" style="--w:59%;--c:var(--blue)"></div></div><b>View</b></div>
+<div class="mixrow"><span>Trip by service</span><div class="track"><div class="fill" style="--w:88%;--c:var(--teal)"></div></div><b>View</b></div>
+<div class="mixrow"><span>Vehicle class</span><div class="track"><div class="fill" style="--w:68%;--c:var(--rose)"></div></div><b>View</b></div>
+</div><div class="legend">Displayed bars are illustrative design elements, not transaction volumes.</div></article>
+</div></div></section>
+<section class="section"><div class="wrap"><h2>Reporting dimensions</h2><p class="sub">The source dashboard brings together these business and financial perspectives.</p><div class="value">
+<article><h3>Revenue &amp; business analysis</h3><ul><li>Historical and year-over-year revenue comparison</li><li>Monthly and daily revenue monitoring</li><li>Revenue by province and service category</li><li>Customer and outsourced booking analysis</li><li>Trip volumes by weekday and service type</li><li>Vehicle class revenue mix</li></ul></article>
+<article><h3>Financial &amp; payment monitoring</h3><ul><li>Average daily revenue and variance analysis</li><li>Revenue compared with petrol and marketing expenses</li><li>Payment channel and BNPL reporting</li><li>Revenue on selected dates</li><li>Management-level KPI consolidation</li></ul></article>
+</div></div></section>
+<section class="section"><div class="wrap"><h2>My contribution</h2><p class="sub">A finance-led approach to management information and performance visibility.</p><div class="workflow">
+<div class="step"><b>01 · Structure</b><span>Organized reporting dimensions and management KPIs.</span></div>
+<div class="step"><b>02 · Analyze</b><span>Developed comparative and segmentation views.</span></div>
+<div class="step"><b>03 · Monitor</b><span>Connected revenue, operational and cost indicators.</span></div>
+<div class="step"><b>04 · Communicate</b><span>Presented consolidated insights for management review.</span></div>
+</div></div></section>
+</main>
+<footer><div class="wrap footrow"><span>© Mobeen Ahmad · Finance Analytics &amp; Management Reporting</span><a href="index.html#projects">Return to portfolio ↑</a></div></footer>
+</body></html>

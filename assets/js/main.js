@@ -1,7 +1,7 @@
 const loader=document.getElementById('maLoader');
 const loaderStart=performance.now();
-const dismissLoader=()=>{const remaining=Math.max(0,1500-(performance.now()-loaderStart));setTimeout(()=>loader?.classList.add('is-hidden'),remaining);};
-if(loader){window.addEventListener('load',dismissLoader,{once:true});setTimeout(dismissLoader,1500);}
+const dismissLoader=()=>{const remaining=Math.max(0,1000-(performance.now()-loaderStart));setTimeout(()=>loader?.classList.add('is-hidden'),remaining);};
+if(loader){window.addEventListener('load',dismissLoader,{once:true});setTimeout(dismissLoader,1000);}
 const menu=document.getElementById('menu'),links=document.getElementById('links');
 menu.setAttribute('aria-controls','links');
 const closeMenu=()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'};

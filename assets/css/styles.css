@@ -1635,3 +1635,30 @@ button{touch-action:manipulation}
 #contact .contact-info{width:100%;max-width:850px}
 #contact .contact-links{margin-top:24px}
 @media(max-width:760px){#contact .contact{display:block}#contact .contact-info{max-width:none}}
+
+/* Early career experience: two distinct, compact timeline entries */
+.early-career{
+ margin-top:18px;
+ padding:21px 23px 22px;
+ border:1px solid rgba(198,165,107,.22);
+ border-left:2px solid rgba(198,165,107,.72);
+ border-radius:12px;
+ background:linear-gradient(115deg,rgba(18,29,45,.82),rgba(13,21,33,.74));
+}
+.early-career-heading{margin-bottom:17px}
+.early-career-kicker{display:block;color:var(--gold2);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px}
+.early-career-heading h3{font:700 15px "Plus Jakarta Sans";color:#eef1f5;margin:0 0 5px}
+.early-career-heading p{font-size:11px;line-height:1.6;color:#aeb8c5;margin:0}
+.early-career-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.early-career-item{display:flex;align-items:flex-start;gap:12px;min-width:0;padding:15px;border:1px solid rgba(255,255,255,.07);border-radius:9px;background:rgba(7,13,22,.38)}
+.early-career-icon{flex:0 0 34px;width:34px;height:34px;display:grid;place-items:center;border-radius:8px;background:rgba(198,165,107,.10);color:var(--gold2)}
+.early-career-icon .ico{width:17px;height:17px}
+.early-career-details{min-width:0}
+.early-career-date{font-size:10px;line-height:1.5;color:#aeb8c5;margin-bottom:5px}
+.early-career-item h4{font:700 13px "Plus Jakarta Sans";color:#f0f2f5;margin:0 0 3px}
+.early-career-item p{font-size:11px;line-height:1.5;color:#d2c3a6;margin:0}
+@media(max-width:620px){
+ .early-career{padding:17px 15px}
+ .early-career-grid{grid-template-columns:minmax(0,1fr);gap:9px}
+ .early-career-item{padding:13px}
+}

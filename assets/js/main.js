@@ -212,7 +212,7 @@ if('IntersectionObserver' in window&&careerRows.length){const careerSpy=new Inte
 })();
 
 
-/* Show five key responsibilities in each role and all items in a modal */
+/* Show three key responsibilities in each role and all items in a modal */
 (()=>{
  const modal=document.getElementById('responsibilitiesModal');
  if(!modal)return;
@@ -221,17 +221,22 @@ if('IntersectionObserver' in window&&careerRows.length){const careerSpy=new Inte
  const close=modal.querySelector('.responsibilities-modal-close');
  let lastTrigger=null;
  document.querySelectorAll('.job').forEach(job=>{
+  job.querySelectorAll('.responsibilities-trigger').forEach(button=>button.remove());
   const responsibilities=[...job.querySelectorAll(':scope > div > ul:not(.chips)')][0];
   if(!responsibilities)return;
   const items=[...responsibilities.querySelectorAll(':scope > li')];
-  if(items.length<=5)return;
+  items.forEach((item,index)=>{
+   item.hidden=index>=3;
+   item.style.display=index>=3?'none':'';
+  });
+  if(items.length<=3)return;
   const heading=job.querySelector('h3')?.textContent.trim()||'Role';
   const company=job.querySelector('.company')?.textContent.trim().replace(/\s+/g,' ')||'';
-  items.slice(5).forEach(item=>item.hidden=true);
   const trigger=document.createElement('button');
   trigger.type='button';
   trigger.className='responsibilities-trigger';
-  trigger.innerHTML='View all '+items.length+' responsibilities <span aria-hidden="true">⌄</span>';
+  trigger.textContent='View all';
+  trigger.setAttribute('aria-label','View all '+items.length+' responsibilities for '+heading);
   responsibilities.insertAdjacentElement('afterend',trigger);
   trigger.addEventListener('click',()=>{
    lastTrigger=trigger;
@@ -241,8 +246,7 @@ if('IntersectionObserver' in window&&careerRows.length){const careerSpy=new Inte
     li.textContent=item.textContent.trim();
     return li;
    }));
-   const companyLabel=modal.querySelector('.responsibilities-modal-kicker');
-   companyLabel.textContent=company?company.toUpperCase():'PROFESSIONAL EXPERIENCE';
+   modal.querySelector('.responsibilities-modal-kicker').textContent=company?company.toUpperCase():'PROFESSIONAL EXPERIENCE';
    modal.showModal();
    close.focus();
   });

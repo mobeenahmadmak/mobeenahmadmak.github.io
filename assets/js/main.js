@@ -210,3 +210,45 @@ if('IntersectionObserver' in window&&careerRows.length){const careerSpy=new Inte
  modal.addEventListener('close',()=>{if(lastTrigger)lastTrigger.focus();});
  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&modal.open)closeModal();});
 })();
+
+
+/* Show five key responsibilities in each role and all items in a modal */
+(()=>{
+ const modal=document.getElementById('responsibilitiesModal');
+ if(!modal)return;
+ const modalTitle=modal.querySelector('#responsibilitiesModalTitle');
+ const list=modal.querySelector('.responsibilities-modal-list');
+ const close=modal.querySelector('.responsibilities-modal-close');
+ let lastTrigger=null;
+ document.querySelectorAll('.job').forEach(job=>{
+  const responsibilities=[...job.querySelectorAll(':scope > div > ul:not(.chips)')][0];
+  if(!responsibilities)return;
+  const items=[...responsibilities.querySelectorAll(':scope > li')];
+  if(items.length<=5)return;
+  const heading=job.querySelector('h3')?.textContent.trim()||'Role';
+  const company=job.querySelector('.company')?.textContent.trim().replace(/\s+/g,' ')||'';
+  items.slice(5).forEach(item=>item.hidden=true);
+  const trigger=document.createElement('button');
+  trigger.type='button';
+  trigger.className='responsibilities-trigger';
+  trigger.innerHTML='View all '+items.length+' responsibilities <span aria-hidden="true">⌄</span>';
+  responsibilities.insertAdjacentElement('afterend',trigger);
+  trigger.addEventListener('click',()=>{
+   lastTrigger=trigger;
+   modalTitle.textContent=heading;
+   list.replaceChildren(...items.map(item=>{
+    const li=document.createElement('li');
+    li.textContent=item.textContent.trim();
+    return li;
+   }));
+   const companyLabel=modal.querySelector('.responsibilities-modal-kicker');
+   companyLabel.textContent=company?company.toUpperCase():'PROFESSIONAL EXPERIENCE';
+   modal.showModal();
+   close.focus();
+  });
+ });
+ const closeModal=()=>{if(modal.open)modal.close();if(lastTrigger)lastTrigger.focus();};
+ close.addEventListener('click',closeModal);
+ modal.addEventListener('click',event=>{if(event.target===modal)closeModal();});
+ modal.addEventListener('close',()=>{if(lastTrigger)lastTrigger.focus();});
+})();

@@ -191,6 +191,15 @@ if('IntersectionObserver' in window&&careerRows.length){const careerSpy=new Inte
  const title=modal.querySelector('#caseStudyModalTitle');
  const close=modal.querySelector('.case-study-modal-close');
  let lastTrigger=null;
+ const trapFocus=event=>{
+  if(event.key!=='Tab')return;
+  const nodes=[...event.currentTarget.querySelectorAll('a[href],button:not([disabled]),iframe,[tabindex]:not([tabindex="-1"]),input:not([disabled]),select:not([disabled]),textarea:not([disabled])')].filter(node=>node.getClientRects().length);
+  if(!nodes.length){event.preventDefault();return;}
+  const first=nodes[0],last=nodes[nodes.length-1];
+  if(event.shiftKey&&(document.activeElement===first||document.activeElement===event.currentTarget)){event.preventDefault();last.focus();}
+  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+ };
+ modal.addEventListener('keydown',trapFocus);
  const pageStyle=`
   html{scroll-behavior:auto!important;scrollbar-width:thin;scrollbar-color:#C49A45 #182333}\n  html::-webkit-scrollbar,body::-webkit-scrollbar{width:6px;height:6px}\n  html::-webkit-scrollbar-track,body::-webkit-scrollbar-track{background:#182333;border-radius:999px}\n  html::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb{background:#C49A45;border:1px solid #182333;border-radius:999px}\n  html::-webkit-scrollbar-thumb:hover,body::-webkit-scrollbar-thumb:hover{background:#EAD7B2}
   body{min-height:100%;overflow-x:hidden}
@@ -241,6 +250,14 @@ if('IntersectionObserver' in window&&careerRows.length){const careerSpy=new Inte
  const list=modal.querySelector('.responsibilities-modal-list');
  const close=modal.querySelector('.responsibilities-modal-close');
  let lastTrigger=null;
+ modal.addEventListener('keydown',event=>{
+  if(event.key!=='Tab')return;
+  const nodes=[...modal.querySelectorAll('button:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])')].filter(node=>node.getClientRects().length);
+  if(!nodes.length){event.preventDefault();return;}
+  const first=nodes[0],last=nodes[nodes.length-1];
+  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+ });
  document.querySelectorAll('.job').forEach(job=>{
   const responsibilities=[...job.querySelectorAll(':scope > div > ul:not(.chips)')][0];
   if(!responsibilities)return;

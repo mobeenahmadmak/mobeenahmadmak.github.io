@@ -1259,3 +1259,25 @@ button{touch-action:manipulation}
  .contact-menu-panel a{font-size:9px;padding:8px 4px;gap:4px}
  .contact-menu-panel .ico{width:12px;height:12px;flex-basis:12px}
 }
+
+
+/* Final hero dropdown placement: anchored under Get in Touch without changing button-row layout */
+.hero-contact-menu{position:relative;display:inline-flex;flex-direction:column;align-items:flex-start;vertical-align:top;z-index:40}
+.hero-contact-menu .contact-menu-panel{
+ position:absolute;
+ top:calc(100% + 7px);
+ left:9px;
+ right:auto;
+ inset-block-start:calc(100% + 7px);
+ margin:0;
+ width:min(376px,calc(100vw - 36px));
+ max-width:calc(100vw - 36px);
+ align-self:auto;
+ z-index:60;
+}
+.hero-contact-menu .contact-menu-panel a{flex:1 1 0;min-width:0}
+@media(max-width:760px){
+ .hero-contact-menu{width:auto;align-items:flex-start}
+ .hero-contact-menu>.contact-menu-trigger{width:auto;justify-content:center}
+ .hero-contact-menu .contact-menu-panel{left:0;width:min(376px,calc(100vw - 36px));max-width:calc(100vw - 36px)}
+}

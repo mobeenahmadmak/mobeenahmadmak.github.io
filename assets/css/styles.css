@@ -1164,3 +1164,25 @@ button{touch-action:manipulation}
 @media(prefers-reduced-motion:reduce){
  .stats .stat b{transition:none!important;animation:none!important}
 }
+
+
+/* Compact contact dropdown anchored directly beneath each Get in Touch trigger */
+.contact-menu{position:relative;display:inline-flex;align-items:center;z-index:30}
+.contact-menu-trigger{cursor:pointer;white-space:nowrap}
+.contact-menu-trigger .ico{width:13px;height:13px;margin-left:5px;transition:transform .2s}
+.contact-menu.is-open .contact-menu-trigger .ico{transform:rotate(180deg)}
+.nav .contact-menu{margin-left:0}
+.nav .contact-menu-trigger{display:inline-flex;align-items:center;gap:7px;background:transparent;cursor:pointer;font:inherit}
+.contact-menu-panel{position:absolute;top:calc(100% + 7px);right:0;width:184px;padding:5px;background:rgba(17,29,46,.98);border:1px solid rgba(198,165,107,.3);border-radius:11px;box-shadow:0 14px 34px rgba(0,0,0,.38);backdrop-filter:blur(14px);z-index:50}
+.contact-menu-panel[hidden]{display:none}
+.contact-menu-panel a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:7px;color:#d8dce3;font-size:11px;line-height:1.3;white-space:nowrap;transition:background .18s,color .18s}
+.contact-menu-panel a:hover,.contact-menu-panel a:focus-visible{background:rgba(198,165,107,.12);color:var(--gold2);outline:none}
+.contact-menu-panel .ico{width:14px;height:14px;flex:0 0 14px;color:var(--gold2)}
+.hero-contact-menu .contact-menu-panel{left:0;right:auto}
+@media(max-width:760px){
+ .nav .contact-menu{width:100%}
+ .nav .contact-menu-trigger{padding:9px 14px}
+ .nav .contact-menu-panel{left:0;right:auto;top:calc(100% + 5px)}
+ .hero-contact-menu .contact-menu-panel{left:0;right:auto}
+}
+@media(prefers-reduced-motion:reduce){.contact-menu-trigger .ico,.contact-menu-panel a{transition:none}}

@@ -113,6 +113,30 @@ if('IntersectionObserver' in window){
 }
 
 /* Project cards remain concise; detailed narratives live in Case Studies. */
+
+/* Lightweight hero depth motion, disabled for touch and reduced-motion users */
+if(!reduceMotion&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+ const hero=document.querySelector('.hero');
+ const depthItems=[...document.querySelectorAll('.hero-layer[data-depth],.hero-portrait [data-depth]')];
+ let pointerFrame=0,lastX=0,lastY=0;
+ hero?.addEventListener('pointermove',event=>{
+  const rect=hero.getBoundingClientRect();
+  lastX=(event.clientX-rect.left)/rect.width-.5;
+  lastY=(event.clientY-rect.top)/rect.height-.5;
+  if(pointerFrame)return;
+  pointerFrame=requestAnimationFrame(()=>{
+   depthItems.forEach(item=>{
+    const depth=Number(item.dataset.depth)||0;
+    item.style.transform=`translate3d(${lastX*depth}px,${lastY*depth}px,0)`;
+   });
+   pointerFrame=0;
+  });
+ },{passive:true});
+ hero?.addEventListener('pointerleave',()=>{
+  depthItems.forEach(item=>{item.style.transform=''});
+ },{passive:true});
+}
+
 /* Reveal hero intro even when a visitor lands on a deep-linked section */
 if(!reduceMotion){
  document.querySelectorAll('.hero-content > *').forEach(el=>el.classList.add('hero-intro-item'));

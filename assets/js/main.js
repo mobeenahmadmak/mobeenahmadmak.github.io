@@ -221,9 +221,14 @@ if('IntersectionObserver' in window&&careerRows.length){const careerSpy=new Inte
  const close=modal.querySelector('.responsibilities-modal-close');
  let lastTrigger=null;
  document.querySelectorAll('.job').forEach(job=>{
-  job.querySelectorAll('.responsibilities-trigger').forEach(button=>button.remove());
   const responsibilities=[...job.querySelectorAll(':scope > div > ul:not(.chips)')][0];
   if(!responsibilities)return;
+  // Remove any previous or cached action labels so only one control can remain.
+  let sibling=responsibilities.nextElementSibling;
+  while(sibling&&!sibling.matches('ul,article')){
+   if(sibling.matches('button,a')||sibling.classList.contains('responsibilities-trigger'))sibling.remove();
+   sibling=sibling.nextElementSibling;
+  }
   const items=[...responsibilities.querySelectorAll(':scope > li')];
   items.forEach((item,index)=>{
    item.hidden=index>=3;

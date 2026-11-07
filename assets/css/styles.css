@@ -1721,3 +1721,20 @@ button{touch-action:manipulation}
   transition:none!important;transform:none!important;animation:none!important
  }
 }
+
+
+/* Copy email action */
+.contact-links .copy-email-btn{
+ display:inline-flex;align-items:center;justify-content:center;gap:8px;
+ min-height:44px;padding:10px 15px;border:1px solid rgba(198,165,107,.32);
+ border-radius:999px;background:rgba(198,165,107,.07);color:#e9d5ad;
+ font:600 12px Inter,sans-serif;cursor:pointer;
+ transition:background-color .2s,border-color .2s,transform .2s,box-shadow .2s;
+}
+.contact-links .copy-email-btn .ico{font-size:15px}
+@media(hover:hover) and (pointer:fine){
+ .contact-links .copy-email-btn:hover{background:rgba(198,165,107,.15);border-color:rgba(234,215,178,.62);transform:translateY(-2px);box-shadow:0 7px 20px rgba(198,165,107,.09)}
+}
+.contact-links .copy-email-btn:focus-visible{outline:2px solid var(--gold2);outline-offset:4px}
+.copy-email-status{flex-basis:100%;min-height:16px;font-size:11px;color:#91d5ad}
+@media(prefers-reduced-motion:reduce){.contact-links .copy-email-btn{transition:none}}

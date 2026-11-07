@@ -282,3 +282,42 @@ if('IntersectionObserver' in window&&careerRows.length){const careerSpy=new Inte
  modal.addEventListener('click',event=>{if(event.target===modal)closeModal();});
  modal.addEventListener('close',()=>{if(lastTrigger)lastTrigger.focus();});
 })();
+
+/* Compact Get in Touch dropdowns */
+(()=>{
+ const menus=[...document.querySelectorAll('.contact-menu')];
+ if(!menus.length)return;
+ const close=menu=>{
+  menu.classList.remove('is-open');
+  const trigger=menu.querySelector('.contact-menu-trigger');
+  const panel=menu.querySelector('.contact-menu-panel');
+  if(trigger)trigger.setAttribute('aria-expanded','false');
+  if(panel)panel.hidden=true;
+ };
+ const closeAll=except=>menus.forEach(menu=>{if(menu!==except)close(menu)});
+ menus.forEach(menu=>{
+  const trigger=menu.querySelector('.contact-menu-trigger');
+  const panel=menu.querySelector('.contact-menu-panel');
+  if(!trigger||!panel)return;
+  trigger.addEventListener('click',event=>{
+   event.preventDefault();
+   const opening=panel.hidden;
+   closeAll(menu);
+   panel.hidden=!opening;
+   menu.classList.toggle('is-open',opening);
+   trigger.setAttribute('aria-expanded',String(opening));
+  });
+  panel.addEventListener('click',event=>{
+   if(event.target.closest('a'))close(menu);
+  });
+ });
+ document.addEventListener('click',event=>{
+  if(!event.target.closest('.contact-menu'))closeAll();
+ });
+ document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'){
+   const open=menus.find(menu=>menu.classList.contains('is-open'));
+   if(open){const trigger=open.querySelector('.contact-menu-trigger');close(open);trigger?.focus();}
+  }
+ });
+})();

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b0e13">
 <meta name="description" content="Mobeen Ahmad's case study on financial control, IFRS reporting, period-end closing, VAT and ZATCA compliance, and audit coordination.">
 <title>Financial Control, Compliance &amp; Process Improvement | Mobeen Ahmad</title>
@@ -35,6 +35,41 @@ footer{border-top:1px solid rgba(255,255,255,.07);padding:25px 0 40px;color:var(
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 
 /* Accessible dark / light appearance */
+
+
+/* Mobile and safe-area refinements for embedded and standalone case studies */
+html{width:100%;max-width:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{width:100%;max-width:100%;overflow-x:clip}
+img,svg{max-width:100%}
+.wrap{width:min(1120px,calc(100% - 44px))}
+.hero,.section{min-width:0}
+h1,h2,h3,p,li{overflow-wrap:anywhere}
+@media(max-width:760px){
+ .wrap{width:calc(100% - 34px)}
+ .hero{padding:48px 0 35px}
+ .hero h1{font-size:clamp(30px,8.5vw,42px);line-height:1.12}
+ .intro{font-size:14px;line-height:1.7}
+ .pills{gap:7px}
+ .pill{font-size:10px;padding:6px 9px}
+ .metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .metric{min-width:0;padding:13px}
+ .metric b{font-size:clamp(18px,5vw,22px)}
+ .grid,.scope,.detail,.value{grid-template-columns:minmax(0,1fr)}
+ .flow,.workflow{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .flow .step:last-child{grid-column:span 2}
+ .step{min-width:0;padding:14px 12px}
+ .mixrow{grid-template-columns:minmax(72px,95px) minmax(0,1fr) 30px;gap:8px}
+ .section{padding:34px 0}
+ .footrow{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:380px){
+ .wrap{width:calc(100% - 28px)}
+ .flow,.workflow{grid-template-columns:minmax(0,1fr)}
+ .flow .step:last-child{grid-column:auto}
+ .metrics{gap:7px}
+ .metric span{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 
 </style>
 </head>

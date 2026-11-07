@@ -1209,3 +1209,53 @@ button{touch-action:manipulation}
  .hero-contact-menu>.contact-menu-trigger{width:100%;justify-content:center}
  .hero-contact-menu .contact-menu-panel{width:184px;max-width:100%;align-self:flex-start}
 }
+
+
+/* Contact choices: single horizontal strip with subtle vertical partitions */
+.contact-menu-panel{
+ display:flex;
+ flex-direction:row;
+ align-items:stretch;
+ width:max-content;
+ max-width:min(460px,calc(100vw - 36px));
+ padding:4px;
+ gap:0;
+}
+.contact-menu-panel a{
+ flex:1 1 auto;
+ justify-content:center;
+ gap:6px;
+ min-width:0;
+ padding:9px 11px;
+ border-radius:6px;
+ font-size:10px;
+}
+.contact-menu-panel a+a{
+ border-left:1px solid rgba(234,215,178,.2);
+ border-radius:0 6px 6px 0;
+}
+.hero-contact-menu .contact-menu-panel{
+ width:min(460px,calc(100vw - 36px));
+}
+.hero-contact-menu .contact-menu-panel a{
+ flex:1 1 0;
+}
+@media(max-width:760px){
+ .nav .contact-menu-panel{
+  width:min(390px,calc(100vw - 36px));
+  max-width:calc(100vw - 36px);
+ }
+ .hero-contact-menu .contact-menu-panel{
+  width:100%;
+  max-width:100%;
+ }
+ .contact-menu-panel a{
+  padding:9px 7px;
+  font-size:10px;
+  gap:5px;
+ }
+}
+@media(max-width:370px){
+ .contact-menu-panel a{font-size:9px;padding:8px 4px;gap:4px}
+ .contact-menu-panel .ico{width:12px;height:12px;flex-basis:12px}
+}

@@ -240,7 +240,7 @@ if('IntersectionObserver' in window&&careerRows.length){const careerSpy=new Inte
   const trigger=document.createElement('button');
   trigger.type='button';
   trigger.className='responsibilities-trigger';
-  trigger.textContent='View all';
+  trigger.innerHTML='View all <span aria-hidden="true">↗</span>';
   trigger.setAttribute('aria-label','View all '+items.length+' responsibilities for '+heading);
   responsibilities.insertAdjacentElement('afterend',trigger);
   trigger.addEventListener('click',()=>{

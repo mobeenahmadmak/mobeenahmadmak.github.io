@@ -1088,3 +1088,38 @@ button{touch-action:manipulation}
 @media(prefers-reduced-motion:reduce){
  .timeline .job:after{transition:none}
 }
+
+
+/* Subtle champagne-gold scrollbars for both portfolio modals */
+.responsibilities-modal-content,
+.case-study-modal-frame{
+ scrollbar-width:thin;
+ scrollbar-color:#C49A45 #182333;
+}
+.responsibilities-modal-content::-webkit-scrollbar,
+.case-study-modal-frame::-webkit-scrollbar{
+ width:6px;
+ height:6px;
+}
+.responsibilities-modal-content::-webkit-scrollbar-track,
+.case-study-modal-frame::-webkit-scrollbar-track{
+ background:#182333;
+ border-radius:999px;
+}
+.responsibilities-modal-content::-webkit-scrollbar-thumb,
+.case-study-modal-frame::-webkit-scrollbar-thumb{
+ background:#C49A45;
+ border:1px solid #182333;
+ border-radius:999px;
+}
+.responsibilities-modal-content::-webkit-scrollbar-thumb:hover,
+.case-study-modal-frame::-webkit-scrollbar-thumb:hover{
+ background:#EAD7B2;
+}
+@media(max-width:760px){
+ .responsibilities-modal-content,
+ .case-study-modal-frame{
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
+ }
+}

@@ -810,5 +810,5 @@ body{background-image:radial-gradient(ellipse at 12% 8%,rgba(62,91,128,.16),tran
 #education .section-head .gold-line{display:block;width:66px;height:2px;margin-top:15px;background:linear-gradient(90deg,var(--gold),transparent);transform-origin:left center}
 
 /* Public footer visitor counter */
-.footer-counter{display:inline-flex;align-items:center;gap:8px;color:#8994a3;white-space:nowrap}.footer-counter .counterapi{display:inline-flex;align-items:center;min-height:20px;color:var(--gold2);font:600 11px Inter,sans-serif}
+.footer-counter{display:inline-flex;align-items:center;gap:8px;color:#8994a3;white-space:nowrap}.footer-counter .counterapi{display:inline-flex;align-items:center;min-height:24px;color:var(--gold2);font:600 11px Inter,sans-serif}
 @media(max-width:760px){.footer-counter{margin-top:8px}}

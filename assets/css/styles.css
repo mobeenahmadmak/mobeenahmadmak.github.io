@@ -1477,3 +1477,32 @@ button{touch-action:manipulation}
 @media(prefers-reduced-motion:reduce){
   .hero-contact-menu .contact-menu-panel{animation:none!important}
 }
+
+/* Refined section rhythm: balanced desktop spacing with mobile-first sizing */
+.section{
+  padding-block:84px;
+}
+.section-head{
+  margin-bottom:34px;
+}
+@media(max-width:760px){
+  .section{
+    padding-block:62px;
+  }
+  .section-head{
+    margin-bottom:28px;
+  }
+}
+@media(max-width:440px){
+  .section{
+    padding-block:54px;
+  }
+  .section-head{
+    margin-bottom:24px;
+  }
+}
+@media(max-width:380px){
+  .section{
+    padding-block:50px;
+  }
+}

@@ -96,6 +96,27 @@ function updateScroll(){
  const box=timeline.getBoundingClientRect();
  const done=(innerHeight*.65-box.top)/box.height;
  railFill.style.transform=`scaleY(${Math.max(0,Math.min(done,1))})`;
+ // Highlight the role nearest the active reading position, not permanently the first role.
+ const jobs=[...timeline.querySelectorAll('.job')];
+ const focusY=innerHeight*.42;
+ let active=jobs.find(job=>{
+  const rect=job.getBoundingClientRect();
+  return rect.top<=focusY&&rect.bottom>focusY;
+ });
+ if(!active&&jobs.length){
+  active=jobs.reduce((nearest,job)=>{
+   const rect=job.getBoundingClientRect();
+   const distance=focusY<rect.top?rect.top-focusY:focusY>rect.bottom?focusY-rect.bottom:0;
+   if(!nearest||distance<nearest.distance)return {job,distance};
+   return nearest;
+  },null)?.job;
+ }
+ jobs.forEach(job=>{
+  const current=job===active;
+  job.classList.toggle('is-active',current);
+  if(current)job.setAttribute('aria-current','location');
+  else job.removeAttribute('aria-current');
+ });
 }
 function scheduleScrollUpdate(){if(!scrollQueued){scrollQueued=true;requestAnimationFrame(updateScroll)}}
 addEventListener('scroll',scheduleScrollUpdate,{passive:true});

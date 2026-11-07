@@ -1629,3 +1629,9 @@ button{touch-action:manipulation}
 #contact .contact-form-trap{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 @media(max-width:760px){#contact .contact{grid-template-columns:minmax(0,1fr);gap:26px}#contact .contact-form-wrap{padding:20px}}
 @media(prefers-reduced-motion:reduce){#contact .contact-form-row input,#contact .contact-form-row textarea,#contact .contact-submit{transition:none}}
+
+/* Compact contact section after removing the form */
+#contact .contact{display:flex;align-items:center;justify-content:space-between;gap:32px}
+#contact .contact-info{width:100%;max-width:850px}
+#contact .contact-links{margin-top:24px}
+@media(max-width:760px){#contact .contact{display:block}#contact .contact-info{max-width:none}}

@@ -1738,3 +1738,103 @@ button{touch-action:manipulation}
 .contact-links .copy-email-btn:focus-visible{outline:2px solid var(--gold2);outline-offset:4px}
 .copy-email-status{flex-basis:100%;min-height:16px;font-size:11px;color:#91d5ad}
 @media(prefers-reduced-motion:reduce){.contact-links .copy-email-btn{transition:none}}
+
+
+/* Cross-device mobile refinement: Android Chrome and iOS Safari */
+@media(max-width:760px){
+  /* Respect iPhone/iPad safe areas without changing Android spacing. */
+  .topbar{
+    padding-top:env(safe-area-inset-top);
+    -webkit-backdrop-filter:blur(18px);
+  }
+  .topbar .links{
+    top:100%;
+    height:calc(100vh - 66px - env(safe-area-inset-top));
+    height:calc(100dvh - 66px - env(safe-area-inset-top));
+    padding-bottom:calc(28px + env(safe-area-inset-bottom));
+    -webkit-overflow-scrolling:touch;
+  }
+  /* Keep header branding and menu button from squeezing or overflowing. */
+  .nav{min-width:0;gap:10px}
+  .brand{min-width:0;max-width:calc(100% - 56px);gap:9px}
+  .brand img,.brand .monogram{flex:0 0 auto}
+  .brand strong{overflow:hidden;text-overflow:ellipsis}
+  .menu{flex:0 0 44px;display:grid;place-items:center;line-height:1}
+  /* Comfortable touch targets for both platforms. */
+  .btn,.nav-cta,.contact-links a,.contact-links button,
+  .contact-menu-trigger,.finance-tab,.case-study-link,
+  .responsibilities-modal-close,.case-study-modal-close{
+    min-height:44px;
+  }
+  .actions .btn{min-height:48px}
+  /* Prevent long labels, URLs and dates from forcing horizontal scroll. */
+  .section,.section-head,.about-grid,.skill-grid,.project-grid,
+  .case-study-grid,.edu-grid,.contact,.finance-insight,.finance-panel,
+  .timeline,.job,.early-career,.early-career-grid{
+    min-width:0;
+    max-width:100%;
+  }
+  .job,.project,.edu,.skill,.case-study-card,.case-study-body,
+  .finance-panel-copy,.contact-info{min-width:0}
+  .job h3,.job .company,.job p,.job li,.project h3,.project p,
+  .edu h3,.edu p,.section-intro,.about-copy,
+  .early-career-item p,.early-career-date{
+    overflow-wrap:anywhere;
+  }
+  .hero-portrait img{display:block;width:100%;height:auto;max-width:100%}
+  .contact-links{align-items:stretch}
+  .contact-links a,.contact-links button{justify-content:center}
+  .finance-tabs{gap:8px}
+  .finance-tab{touch-action:manipulation}
+  .case-study-modal-frame{width:100%;max-width:100%;border:0}
+  .responsibilities-modal-content,.case-study-modal{overscroll-behavior:contain}
+}
+@media(max-width:420px){
+  .wrap{width:calc(100% - 30px)}
+  .brand{gap:7px}
+  .brand strong{font-size:10px;letter-spacing:.055em}
+  .brand small{font-size:7px;letter-spacing:.11em}
+  .hero h1{font-size:clamp(33px,9vw,40px);overflow-wrap:break-word}
+  .hero-copy{font-size:14px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:12px}
+  .stat{padding-left:0!important}
+  .stat b{font-size:clamp(22px,6.4vw,27px)}
+  .contact-links{display:grid;grid-template-columns:minmax(0,1fr);width:100%}
+  .contact-links a,.contact-links button{width:100%;min-width:0}
+  .early-career-grid{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:360px){
+  .wrap{width:calc(100% - 26px)}
+  .brand strong{font-size:9px}
+  .brand small{font-size:6.5px}
+  .nav{gap:7px}
+  .hero h1{font-size:33px}
+  .hero .stats{column-gap:8px}
+  .stat small{font-size:8px;letter-spacing:.025em}
+  .contact{padding:17px}
+}
+@media(max-width:760px) and (orientation:landscape){
+  .topbar .links{
+    max-height:calc(100vh - 66px - env(safe-area-inset-top));
+    max-height:calc(100dvh - 66px - env(safe-area-inset-top));
+  }
+  .hero{padding-top:38px;padding-bottom:38px}
+  .hero-portrait{width:min(42vw,230px)}
+}
+@supports not (height:100dvh){
+  @media(max-width:760px){
+    .topbar .links{height:calc(100vh - 66px - env(safe-area-inset-top))}
+  }
+}
+@supports (-webkit-touch-callout:none){
+  input,textarea,select,button{font:inherit}
+  .topbar,.contact-menu-panel,.case-study-modal,.responsibilities-modal{
+    -webkit-backdrop-filter:blur(14px);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .topbar .links,.finance-tab,.btn,.contact-links a,.contact-links button{
+    scroll-behavior:auto!important;
+    transition:none!important;
+  }
+}

@@ -5,9 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<script>
-(()=>{try{const saved=localStorage.getItem('ma-theme');const system=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=saved||system;}catch(e){document.documentElement.dataset.theme='dark';}})();
-</script>
+
 <script>document.documentElement.classList.add('js')</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0b0e13">
@@ -47,7 +45,7 @@
 <a class="brand" href="/" aria-label="Mobeen Ahmad home"><span class="monogram"><img src="ma-logo.svg" alt="" width="42" height="42"></span><span><strong>MOBEEN AHMAD</strong><small>Accounting Manager</small></span></a>
 <button class="menu" id="menu" aria-label="Toggle navigation" aria-expanded="false">☰</button>
 <nav class="links" id="links"><a href="#about">About</a><a href="#expertise">Expertise</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#case-studies">Case Studies</a><a href="#education">Education</a><a class="nav-cta" href="#contact">Get in touch</a></nav>
-<button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode"><span class="theme-toggle-icon" aria-hidden="true">☼</span><span class="theme-toggle-label">Light</span></button>
+
 </div></header>
 <main id="home">
 <section class="hero"><div class="hero-bg" aria-hidden="true"><div class="hero-spot"></div><div class="hero-layer hero-orb one" data-depth="-22"></div><div class="hero-layer hero-orb two" data-depth="-14"></div><div class="hero-layer hero-grid" data-depth="7"></div><svg class="hero-layer hero-chart" data-depth="16" viewBox="0 0 900 560" preserveAspectRatio="xMaxYMid meet" fill="none"><rect class="bar" style="--i:0" x="105" y="340" width="34" height="110" rx="3"/><rect class="bar" style="--i:1" x="185" y="290" width="34" height="160" rx="3"/><rect class="bar" style="--i:2" x="265" y="315" width="34" height="135" rx="3"/><rect class="bar" style="--i:3" x="345" y="230" width="34" height="220" rx="3"/><rect class="bar" style="--i:4" x="425" y="190" width="34" height="260" rx="3"/><rect class="bar" style="--i:5" x="505" y="145" width="34" height="305" rx="3"/><rect class="bar" style="--i:6" x="585" y="105" width="34" height="345" rx="3"/><rect class="bar" style="--i:7" x="665" y="130" width="34" height="320" rx="3"/><rect class="bar" style="--i:8" x="745" y="80" width="34" height="370" rx="3"/><path class="trend" pathLength="1" d="M45 365L145 330L225 345L305 265L385 280L465 190L545 205L625 125L705 145L835 55"/><circle style="--i:0" cx="145" cy="330" r="4"/><circle style="--i:1" cx="305" cy="265" r="4"/><circle style="--i:2" cx="465" cy="190" r="4"/><circle style="--i:3" cx="625" cy="125" r="4"/><circle style="--i:4" cx="835" cy="55" r="4"/></svg></div><div class="wrap hero-layout"><div class="hero-content">
@@ -144,19 +142,6 @@
 <footer class="wrap footer"><span>© <span id="year"></span> Mobeen Ahmad. All rights reserved.</span><span>Jeddah, Saudi Arabia · IFRS · FP&amp;A · ZATCA</span></footer>
 
 <script src="assets/js/main.js" defer></script>
-<script>
-(()=> {
- const root=document.documentElement,button=document.querySelector('.theme-toggle');
- if(!button)return;
- const paint=()=>{const light=root.dataset.theme==='light';button.setAttribute('aria-label',light?'Switch to dark mode':'Switch to light mode');button.title=light?'Switch to dark mode':'Switch to light mode';button.querySelector('.theme-toggle-icon').textContent=light?'☾':'☼';button.querySelector('.theme-toggle-label').textContent=light?'Dark':'Light';};
- paint();
- button.addEventListener('click',()=>{
-  const next=root.dataset.theme==='light'?'dark':'light';
-  root.dataset.theme=next;
-  try{localStorage.setItem('ma-theme',next);}catch(e){}
-  paint();
- });
-})();
-</script>
+
 </body></html>
 

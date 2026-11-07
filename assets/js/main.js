@@ -76,7 +76,7 @@ document.querySelectorAll('.job ul:not(.chips)').forEach((list,index)=>{
 });
 
 // Scroll reveal
-const revealTargets=document.querySelectorAll('.section-head,.about-copy,.sector-card,.bring,.skill,.flow,.gantt,.job,.project,.edu,.contact');
+const revealTargets=document.querySelectorAll('.section-head,.about-copy,.sector-card,.bring,.skill,.flow,.gantt,.job,.project,.edu,.contact,.early-career');
 const showCounters=el=>el.querySelectorAll('[data-count]').forEach(animateCount);
 if(reduceMotion||!('IntersectionObserver' in window)){
  revealTargets.forEach(el=>el.classList.add('in'));

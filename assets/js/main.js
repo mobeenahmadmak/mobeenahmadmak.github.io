@@ -4,8 +4,8 @@ const dismissLoader=()=>{const remaining=Math.max(0,500-(performance.now()-loade
 if(loader){window.addEventListener('load',dismissLoader,{once:true});setTimeout(dismissLoader,500);}
 const menu=document.getElementById('menu'),links=document.getElementById('links');
 menu.setAttribute('aria-controls','links');
-const closeMenu=()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'};
-menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'×':'☰'});
+const closeMenu=()=>{links.classList.remove('open');document.body.classList.remove('menu-open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'};
+menu.addEventListener('click',()=>{const open=links.classList.toggle('open');document.body.classList.toggle('menu-open',open);menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'×':'☰'});
 links.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
 document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu()});
 window.addEventListener('resize',()=>{if(window.innerWidth>760)closeMenu()});

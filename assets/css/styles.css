@@ -1323,3 +1323,46 @@ button{touch-action:manipulation}
  .skill .skill-ico{width:42px;height:42px}
  .skill h3{font-size:15px}
 }
+
+
+/* Contact panel entrance and staggered content reveal */
+.contact{position:relative;isolation:isolate;overflow:hidden}
+.contact:before{
+ content:"";
+ position:absolute;
+ inset:-45% -25%;
+ z-index:-1;
+ pointer-events:none;
+ background:radial-gradient(ellipse at 18% 50%,rgba(234,215,178,.105),transparent 38%),radial-gradient(ellipse at 82% 10%,rgba(198,165,107,.075),transparent 34%);
+ opacity:.72;
+ transform:translate3d(-3%,0,0);
+ transition:transform 1.8s cubic-bezier(.2,.7,.2,1),opacity 1.2s ease;
+}
+.contact.in:before{transform:translate3d(3%,0,0);opacity:1}
+.contact>div:first-child,.contact .contact-links{
+ opacity:0;
+ transform:translateY(18px);
+ transition:opacity .75s ease,transform .85s cubic-bezier(.2,.7,.2,1);
+}
+.contact.in>div:first-child{opacity:1;transform:none}
+.contact.in .contact-links{opacity:1;transform:none;transition-delay:.22s}
+.contact.in .contact-links a{animation:contactLinkIn .55s both}
+.contact.in .contact-links a:nth-child(1){animation-delay:.28s}
+.contact.in .contact-links a:nth-child(2){animation-delay:.38s}
+.contact.in .contact-links a:nth-child(3){animation-delay:.48s}
+.contact.in .contact-links a:nth-child(4){animation-delay:.58s}
+.contact-links a{position:relative;transition:color .25s ease,background .25s ease,border-color .25s ease,box-shadow .25s ease,transform .25s ease}
+.contact-links a .ico{transition:transform .25s ease,color .25s ease}
+.contact-links a:hover,.contact-links a:focus-visible{
+ transform:translateY(-3px);
+ color:var(--gold2);
+ border-color:rgba(234,215,178,.58);
+ background:rgba(198,165,107,.09);
+ box-shadow:0 9px 24px rgba(0,0,0,.2),0 0 18px rgba(198,165,107,.08);
+ outline:none;
+}
+.contact-links a:hover .ico,.contact-links a:focus-visible .ico{transform:scale(1.12);color:var(--gold2)}
+@keyframes contactLinkIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){
+ .contact:before,.contact>div:first-child,.contact .contact-links,.contact.in .contact-links a,.contact-links a,.contact-links a .ico{animation:none!important;transition:none!important;transform:none!important;opacity:1!important}
+}

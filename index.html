@@ -36,7 +36,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Mobeen Ahmad","jobTitle":"Accounting Manager","url":"https://mobeenahmadmak.github.io/","image":"https://mobeenahmadmak.github.io/mobeen-ahmad.jpg.png","email":"mailto:mobeenahmadmak@gmail.com","sameAs":["https://www.linkedin.com/in/mobeenahmadmak/"],"address":{"@type":"PostalAddress","addressLocality":"Jeddah","addressCountry":"SA"}}</script>
 
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261107-mobile-fix">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261108-contact-form">
 </head>
 <body>
 <div class="ma-loader" id="maLoader" aria-label="Loading portfolio"><img class="loader-mark" src="ma-logo.svg" alt="MA logo" width="74" height="74"><span class="loader-line"></span><small>FINANCE · LEADERSHIP · INSIGHT</small></div>
@@ -137,7 +137,21 @@
 </div></div></section>
 <section class="section" id="education"><div class="wrap"><div class="section-head"><div><div class="section-kicker">06 / Qualifications</div><h2>Education &amp; certifications</h2><div class="gold-line"></div></div></div>
 <div class="edu-grid"><div class="edu"><svg class="ico" aria-hidden="true"><use href="#i-users"/></svg><div><h3>Associate Member, SOCPA</h3><p>Professional Membership · Effective May 2017</p></div></div><div class="edu"><svg class="ico" aria-hidden="true"><use href="#i-award"/></svg><div><h3>FMVA® | Financial Modeling &amp; Valuation Analyst</h3><p>Certification · Corporate Finance Institute · June 2017</p></div></div><div class="edu"><svg class="ico" aria-hidden="true"><use href="#i-award"/></svg><div><h3>Financial Reporting Specialization</h3><p>Specialization · University of Illinois Urbana-Champaign · April 2026</p></div></div><div class="edu"><svg class="ico" aria-hidden="true"><use href="#i-award"/></svg><div><h3>Financial Analyst</h3><p>Certificate · June 2026</p></div></div><div class="edu"><svg class="ico" aria-hidden="true"><use href="#i-award"/></svg><div><h3>Financial Modeling Foundations</h3><p>Certificate · NASBA · January 2020</p></div></div><div class="edu"><svg class="ico" aria-hidden="true"><use href="#i-cap"/></svg><div><h3>Bachelor of Commerce (B.Com)</h3><p>Degree · University of the Punjab · June 2008</p></div></div></div></div></section>
-<section class="section" id="contact"><div class="wrap"><div class="contact"><div><div class="section-kicker">07 / Contact</div><h2>Open to New Opportunities &amp; Collaboration</h2><p>I welcome new career opportunities, professional networking, finance discussions, and business collaborations. If you’re looking to connect, exchange ideas, or explore opportunities to work together, feel free to reach out. Let’s connect!</p></div><div class="contact-links"><a href="mailto:mobeenahmadmak@gmail.com"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>Email me</a><a href="https://www.linkedin.com/in/mobeenahmadmak/" target="_blank" rel="noopener noreferrer"><svg class="ico" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn</a><a href="https://wa.me/966530093070" target="_blank" rel="noopener noreferrer" aria-label="Chat with me on WhatsApp"><svg class="ico" aria-hidden="true"><use href="#i-whatsapp"/></svg>WhatsApp</a><a href="tel:+966530093070"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>Call</a></div></div></div></section>
+<section class="section" id="contact"><div class="wrap"><div class="contact">
+<div class="contact-info"><div class="section-kicker">07 / Contact</div><h2>Open to New Opportunities &amp; Collaboration</h2><p>I welcome new career opportunities, professional networking, finance discussions, and business collaborations. Send me a message or connect through LinkedIn.</p>
+<div class="contact-links"><a class="contact-link-primary" href="https://www.linkedin.com/in/mobeenahmadmak/" target="_blank" rel="noopener noreferrer"><svg class="ico" aria-hidden="true"><use href="#i-linkedin"/></svg>Connect on LinkedIn</a><a href="https://wa.me/966530093070" target="_blank" rel="noopener noreferrer" aria-label="Chat with me on WhatsApp"><svg class="ico" aria-hidden="true"><use href="#i-whatsapp"/></svg>WhatsApp</a></div>
+</div>
+<div class="contact-form-wrap"><h3>Send me a message</h3><p class="contact-form-intro">I’ll get back to you as soon as I can.</p>
+<form class="contact-form" id="portfolioContactForm" action="https://formspree.io/f/xrppvoyn" method="POST">
+<input type="hidden" name="_subject" value="New message from your portfolio website">
+<div class="contact-form-trap" aria-hidden="true"><label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+<div class="contact-form-row"><label for="contactName">Your name</label><input id="contactName" name="name" type="text" autocomplete="name" placeholder="Enter your name" required maxlength="100"></div>
+<div class="contact-form-row"><label for="contactEmail">Email address</label><input id="contactEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required maxlength="254"></div>
+<div class="contact-form-row"><label for="contactSubject">Subject</label><input id="contactSubject" name="subject" type="text" placeholder="What would you like to discuss?" required maxlength="150"></div>
+<div class="contact-form-row"><label for="contactMessage">Message</label><textarea id="contactMessage" name="message" rows="5" placeholder="Write your message..." required maxlength="5000"></textarea></div>
+<button class="contact-submit" type="submit">Send Message <span aria-hidden="true">→</span></button>
+<p class="contact-form-status" id="contactFormStatus" role="status" aria-live="polite"></p>
+</form></div></div></div></section>
 </main>
 <button class="scroll-top" id="scrollTop" type="button" aria-label="Scroll to top" title="Back to top"><svg class="ico" aria-hidden="true"><use href="#i-up"/></svg></button>
 <footer class="wrap footer"><span>© <span id="year"></span> Mobeen Ahmad. All rights reserved.</span><span>Jeddah, Saudi Arabia · IFRS · FP&amp;A · ZATCA</span></footer>
@@ -156,7 +170,7 @@
  </div>
  <iframe class="case-study-modal-frame" title="Case study details" loading="eager"></iframe>
 </dialog>
-<script src="assets/js/main.js?v=20261108-menu-a11y" defer></script>
+<script src="assets/js/main.js?v=20261108-contact-form" defer></script>
 
 </body></html>
 

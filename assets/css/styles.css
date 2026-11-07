@@ -1563,3 +1563,30 @@ button{touch-action:manipulation}
   .hero-bg .hero-chart .trend,
   .hero-bg .hero-chart circle{animation:none!important}
 }
+
+/* Compact early-career summary */
+.earlier-experience{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  margin-top:18px;
+  padding:16px 20px;
+  border:1px solid rgba(255,255,255,.07);
+  border-left:2px solid rgba(198,165,107,.65);
+  border-radius:10px;
+  background:rgba(16,26,41,.48);
+  color:#aeb9c7;
+  font-size:12px;
+  line-height:1.75;
+}
+.earlier-experience strong{
+  flex:0 0 auto;
+  color:var(--gold2);
+  font-size:11px;
+  letter-spacing:.04em;
+}
+.g-row.earlier{cursor:default}
+.g-row.earlier .g-label b{color:var(--gold2)}
+@media(max-width:760px){
+  .earlier-experience{display:grid;gap:4px;margin-top:14px;padding:14px 16px}
+}

@@ -160,3 +160,53 @@ financeTabs.forEach(tab=>tab.addEventListener('click',()=>{const item=financeCon
 // Highlight the career milestone currently in view.
 const careerRows=[...document.querySelectorAll('.g-row')];
 if('IntersectionObserver' in window&&careerRows.length){const careerSpy=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){careerRows.forEach(row=>row.removeAttribute('aria-current'));const match=careerRows.find(row=>row.hash===`#${entry.target.id}`);match?.setAttribute('aria-current','true');}}),{rootMargin:'-35% 0px -55% 0px'});careerRows.forEach(row=>{const target=document.querySelector(row.hash);if(target)careerSpy.observe(target);});}
+
+
+/* Open portfolio case studies in an accessible, responsive modal */
+(()=>{
+ const modal=document.getElementById('caseStudyModal');
+ if(!modal)return;
+ const frame=modal.querySelector('.case-study-modal-frame');
+ const title=modal.querySelector('#caseStudyModalTitle');
+ const close=modal.querySelector('.case-study-modal-close');
+ let lastTrigger=null;
+ const pageStyle=`
+  html{scroll-behavior:auto!important}
+  body{min-height:100%;overflow-x:hidden}
+  header,footer{display:none!important}
+  main{padding-bottom:28px}
+  .hero.wrap,.section .wrap{width:min(100% - 44px,1000px)}
+  @media(max-width:600px){.hero.wrap,.section .wrap{width:calc(100% - 34px)}.hero{padding-top:30px}.section{padding-top:30px;padding-bottom:30px}h1{font-size:clamp(30px,8vw,42px)!important}}
+ `;
+ document.querySelectorAll('.case-study-card[href$=".html"]').forEach(card=>{
+  card.addEventListener('click',event=>{
+   if(event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+   event.preventDefault();
+   lastTrigger=card;
+   const heading=card.querySelector('h3');
+   title.textContent=heading?heading.textContent.trim():'Case Study';
+   frame.src=card.href;
+   if(!modal.open)modal.showModal();
+   close.focus();
+  });
+ });
+ frame.addEventListener('load',()=>{
+  try{
+   const doc=frame.contentDocument;
+   if(!doc)return;
+   const style=doc.createElement('style');
+   style.textContent=pageStyle;
+   doc.head.appendChild(style);
+   doc.documentElement.style.overflowY='auto';
+  }catch(error){/* The standalone case study link remains available as a fallback. */}
+ });
+ const closeModal=()=>{
+  if(modal.open)modal.close();
+  frame.src='about:blank';
+  if(lastTrigger)lastTrigger.focus();
+ };
+ close.addEventListener('click',closeModal);
+ modal.addEventListener('click',event=>{if(event.target===modal)closeModal();});
+ modal.addEventListener('close',()=>{if(lastTrigger)lastTrigger.focus();});
+ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&modal.open)closeModal();});
+})();

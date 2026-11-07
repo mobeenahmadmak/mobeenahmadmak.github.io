@@ -1281,3 +1281,45 @@ button{touch-action:manipulation}
  .hero-contact-menu>.contact-menu-trigger{width:auto;justify-content:center}
  .hero-contact-menu .contact-menu-panel{left:0;width:min(376px,calc(100vw - 36px));max-width:calc(100vw - 36px)}
 }
+
+
+/* Expertise cards: place each icon and heading on one compact header row */
+.skill{
+ display:grid;
+ grid-template-columns:44px minmax(0,1fr);
+ column-gap:12px;
+ row-gap:12px;
+ align-content:start;
+ min-height:0;
+ padding:21px;
+}
+.skill .skill-ico{
+ grid-column:1;
+ grid-row:1;
+ width:44px;
+ height:44px;
+}
+.skill h3{
+ grid-column:2;
+ grid-row:1;
+ align-self:center;
+ min-width:0;
+ margin:0;
+ font-size:15px;
+ line-height:1.35;
+ overflow-wrap:anywhere;
+}
+.skill .chips{
+ grid-column:1 / -1;
+ grid-row:2;
+}
+@media(max-width:760px){
+ .skill{padding:18px;column-gap:10px;row-gap:10px}
+ .skill .skill-ico{width:40px;height:40px}
+ .skill h3{font-size:14px}
+}
+@media(max-width:440px){
+ .skill{padding:20px;column-gap:12px;row-gap:11px}
+ .skill .skill-ico{width:42px;height:42px}
+ .skill h3{font-size:15px}
+}

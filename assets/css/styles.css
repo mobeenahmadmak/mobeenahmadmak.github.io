@@ -1366,3 +1366,30 @@ button{touch-action:manipulation}
 @media(prefers-reduced-motion:reduce){
  .contact:before,.contact>div:first-child,.contact .contact-links,.contact.in .contact-links a,.contact-links a,.contact-links a .ico{animation:none!important;transition:none!important;transform:none!important;opacity:1!important}
 }
+
+
+/* Header polish: compact sticky state, clear active navigation and refined dropdown */
+.topbar{transition:background .3s ease,border-color .3s ease,box-shadow .3s ease}
+.nav{transition:height .28s cubic-bezier(.2,.7,.2,1)}
+.brand{transition:transform .28s cubic-bezier(.2,.7,.2,1)}
+.topbar.scrolled .nav{height:68px}
+.topbar.scrolled .brand{transform:scale(.96);transform-origin:left center}
+.topbar.scrolled{background:rgba(8,13,22,.97);border-bottom-color:rgba(234,215,178,.14);box-shadow:0 10px 30px rgba(0,0,0,.24)}
+.links a:not(.nav-cta):focus-visible,.brand:focus-visible,.menu:focus-visible,.nav-cta:focus-visible{outline:2px solid rgba(234,215,178,.75);outline-offset:4px;border-radius:6px}
+.links a.active:not(.nav-cta){color:var(--gold2)}
+.contact-menu-trigger>span{display:inline-block;transition:transform .22s ease}
+.contact-menu.is-open .contact-menu-trigger>span{transform:rotate(180deg)}
+.nav .contact-menu-panel:not([hidden]){animation:navDropdownIn .2s ease both}
+@keyframes navDropdownIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:760px){
+ .topbar.scrolled .nav{height:62px}
+ .topbar.scrolled .links{top:62px}
+ .topbar.scrolled .brand{transform:scale(.96);transform-origin:left center}
+ .links a:not(.nav-cta){position:relative;padding-left:12px;transition:color .2s ease,background .2s ease}
+ .links a:not(.nav-cta).active{background:rgba(198,165,107,.075);border-radius:7px}
+ .links a:not(.nav-cta).active:before{content:"";position:absolute;left:0;top:11px;bottom:11px;width:2px;border-radius:2px;background:var(--gold2)}
+ .nav .contact-menu{width:100%;margin-top:8px}
+ .nav .contact-menu-trigger{min-height:44px}
+ .nav .contact-menu-panel{top:calc(100% + 6px)}
+}
+@media(prefers-reduced-motion:reduce){.topbar,.nav,.brand,.contact-menu-trigger>span,.nav .contact-menu-panel:not([hidden]){transition:none!important;animation:none!important}}

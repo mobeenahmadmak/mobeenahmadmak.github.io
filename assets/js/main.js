@@ -10,6 +10,17 @@ links.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
 document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu()});
 window.addEventListener('resize',()=>{if(window.innerWidth>760)closeMenu()});
 document.getElementById('year').textContent=new Date().getFullYear();
+/* Public website visitor counter (CounterAPI JSONP) */
+window.counterApiVisitorCallback=function(response){
+ const count=document.getElementById('visitor-count');
+ if(count&&response&&Number.isFinite(Number(response.value)))count.textContent=Number(response.value).toLocaleString();
+ else if(count)count.textContent='Unavailable';
+};
+const visitorCounterScript=document.createElement('script');
+visitorCounterScript.src='https://counterapi.com/api/mobeenahmadmak.github.io/view/homepage?callback=counterApiVisitorCallback';
+visitorCounterScript.async=true;
+visitorCounterScript.onerror=()=>{const count=document.getElementById('visitor-count');if(count)count.textContent='Unavailable';};
+document.head.appendChild(visitorCounterScript);
 const scrollTopButton=document.getElementById('scrollTop');
 const toggleScrollTop=()=>scrollTopButton.classList.toggle('visible',window.scrollY>400);
 window.addEventListener('scroll',toggleScrollTop,{passive:true});

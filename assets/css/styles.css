@@ -1577,3 +1577,30 @@ button{touch-action:manipulation}
 @media(max-width:760px){
   .hero-bg{background-size:auto 100%;background-position:62% center}
 }
+
+/* Corrected static hero artwork: keep finance details in the background */
+.hero-bg{
+  background-size:cover;
+  background-position:center;
+}
+.hero-bg:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  display:block!important;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(8,13,22,.18) 0%,rgba(8,13,22,.12) 42%,rgba(8,13,22,.48) 100%),
+    linear-gradient(180deg,rgba(8,13,22,.08) 0%,transparent 45%,rgba(8,13,22,.28) 100%);
+}
+@media(max-width:760px){
+  .hero-bg{
+    background-size:auto 100%;
+    background-position:70% center;
+  }
+  .hero-bg:after{
+    background:
+      linear-gradient(180deg,rgba(8,13,22,.28) 0%,rgba(8,13,22,.16) 48%,rgba(8,13,22,.55) 100%),
+      linear-gradient(90deg,rgba(8,13,22,.30),rgba(8,13,22,.08));
+  }
+}

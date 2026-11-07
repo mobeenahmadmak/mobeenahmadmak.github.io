@@ -889,3 +889,6 @@ body{background-image:radial-gradient(ellipse at 12% 8%,rgba(62,91,128,.16),tran
 /* Keep collapsed job responsibilities strictly limited to three */
 .job ul:not(.chips) > li[hidden]{display:none!important}
 .responsibilities-trigger{margin-top:12px;font-size:12px;letter-spacing:.01em}
+
+/* Prevent legacy duplicate responsibility actions from appearing */
+.job .responsibilities-trigger + .responsibilities-trigger{display:none!important}

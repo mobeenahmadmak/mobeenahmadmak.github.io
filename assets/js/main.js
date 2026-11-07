@@ -4,10 +4,26 @@ const dismissLoader=()=>{const remaining=Math.max(0,500-(performance.now()-loade
 if(loader){window.addEventListener('load',dismissLoader,{once:true});setTimeout(dismissLoader,500);}
 const menu=document.getElementById('menu'),links=document.getElementById('links');
 menu.setAttribute('aria-controls','links');
-const closeMenu=()=>{links.classList.remove('open');document.body.classList.remove('menu-open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'};
-menu.addEventListener('click',()=>{const open=links.classList.toggle('open');document.body.classList.toggle('menu-open',open);menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'×':'☰'});
-links.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
-document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu()});
+const closeMenu=(restoreFocus=false)=>{
+ const wasOpen=links.classList.contains('open');
+ links.classList.remove('open');
+ document.body.classList.remove('menu-open');
+ menu.setAttribute('aria-expanded','false');
+ menu.setAttribute('aria-label','Open navigation menu');
+ menu.textContent='☰';
+ if(restoreFocus&&wasOpen)menu.focus();
+};
+menu.addEventListener('click',()=>{
+ const open=links.classList.toggle('open');
+ document.body.classList.toggle('menu-open',open);
+ menu.setAttribute('aria-expanded',String(open));
+ menu.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');
+ menu.textContent=open?'×':'☰';
+});
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>closeMenu()));
+document.addEventListener('keydown',event=>{
+ if(event.key==='Escape'&&links.classList.contains('open'))closeMenu(true);
+});
 window.addEventListener('resize',()=>{if(window.innerWidth>760)closeMenu()});
 document.getElementById('year').textContent=new Date().getFullYear();
 const scrollTopButton=document.getElementById('scrollTop');

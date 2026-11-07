@@ -354,3 +354,37 @@ if('IntersectionObserver' in window&&careerRows.length){const careerSpy=new Inte
   }
  });
 })();
+
+
+/* Formspree contact form submission */
+(()=>{
+ const form=document.getElementById('portfolioContactForm');
+ const status=document.getElementById('contactFormStatus');
+ if(!form||!status)return;
+ form.addEventListener('submit',async event=>{
+  event.preventDefault();
+  const submit=form.querySelector('button[type="submit"]');
+  const original=submit.textContent;
+  status.textContent='Sending your message…';
+  status.className='contact-form-status';
+  submit.disabled=true;
+  submit.textContent='Sending…';
+  try{
+   const response=await fetch(form.action,{
+    method:'POST',
+    body:new FormData(form),
+    headers:{Accept:'application/json'}
+   });
+   if(!response.ok)throw new Error('Submission failed');
+   form.reset();
+   status.textContent='Thank you. Your message has been sent successfully.';
+   status.classList.add('is-success');
+  }catch(error){
+   status.textContent='Sorry, your message could not be sent. Please try again or contact me through LinkedIn.';
+   status.classList.add('is-error');
+  }finally{
+   submit.disabled=false;
+   submit.textContent=original;
+  }
+ });
+})();

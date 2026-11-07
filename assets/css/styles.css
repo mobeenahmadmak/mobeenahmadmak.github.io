@@ -1590,3 +1590,14 @@ button{touch-action:manipulation}
 @media(max-width:760px){
   .earlier-experience{display:grid;gap:4px;margin-top:14px;padding:14px 16px}
 }
+
+
+/* WCAG AA contrast tuning for small and muted text */
+.section-kicker,.gantt>p,.g-row .g-label small,.g-dur,.stat small,.footer,.job-date,.project span,.skill .num,.earlier-experience span{color:#aeb8c5}
+.section-intro,.about-copy,.hero-copy,.job p,.job li,.skill p,.project p,.edu p,.contact p{color:#b8c3d0}
+.responsibilities-modal-kicker{color:#c6a56b}
+:where(dialog) :focus-visible{outline:2px solid #ead7b2;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto!important}
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}

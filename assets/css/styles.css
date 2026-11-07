@@ -1010,3 +1010,26 @@ button{touch-action:manipulation}
  .case-study-modal,.responsibilities-modal{height:100vh;max-height:100vh}
  .links{max-height:calc(100vh - 66px)}
 }
+
+
+/* Consistent sector palette across the sector summary and career timeline */
+:root{
+ --sector-financial:#C49A45;
+ --sector-industrial:#5B8FD1;
+ --sector-service:#B77A9B;
+ --duration-gold:#EAD7B2;
+}
+.sector-bar .seg{background:var(--c);border-radius:3px}
+.sector-bar .seg:first-child{border-radius:3px 0 0 3px}
+.sector-bar .seg:last-child{border-radius:0 3px 3px 0}
+.sector-list [data-sector="financial"] i{background:var(--sector-financial)}
+.sector-list [data-sector="industrial"] i{background:var(--sector-industrial)}
+.sector-list [data-sector="service"] i{background:var(--sector-service)}
+.g-row[href="#job-manager"] .g-bar{background:var(--sector-service)}
+.g-row[href="#job-senior"] .g-bar{background:var(--sector-industrial)}
+.g-row[href="#job-funding"] .g-bar,
+.g-row[href="#job-accountant"] .g-bar,
+.g-row[href="#job-trainee"] .g-bar{background:var(--sector-financial)}
+.g-row[href="#job-teacher"] .g-bar{background:#8793A5}
+.g-bar{background:var(--sector-financial);border-radius:4px;opacity:1}
+.g-dur,.sector-list span.val{color:var(--duration-gold)}

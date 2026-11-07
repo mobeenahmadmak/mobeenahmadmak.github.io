@@ -1186,3 +1186,26 @@ button{touch-action:manipulation}
  .hero-contact-menu .contact-menu-panel{left:0;right:auto}
 }
 @media(prefers-reduced-motion:reduce){.contact-menu-trigger .ico,.contact-menu-panel a{transition:none}}
+
+
+/* Fix hero contact dropdown: retain the outline style and expand in document flow */
+.hero-contact-menu{display:inline-flex;flex-direction:column;align-items:flex-start;vertical-align:top}
+.hero-contact-menu>.contact-menu-trigger{
+ background:transparent!important;
+ color:var(--gold2)!important;
+ border:1px solid rgba(234,215,178,.32)!important;
+ box-shadow:none!important;
+}
+.hero-contact-menu>.contact-menu-trigger:hover{background:rgba(198,165,107,.08)!important}
+.hero-contact-menu .contact-menu-panel{
+ position:static;
+ inset:auto;
+ margin-top:7px;
+ width:184px;
+ align-self:flex-start;
+}
+@media(max-width:760px){
+ .hero-contact-menu{width:100%;align-items:stretch}
+ .hero-contact-menu>.contact-menu-trigger{width:100%;justify-content:center}
+ .hero-contact-menu .contact-menu-panel{width:184px;max-width:100%;align-self:flex-start}
+}

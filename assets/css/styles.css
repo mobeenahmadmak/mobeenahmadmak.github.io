@@ -885,3 +885,7 @@ body{background-image:radial-gradient(ellipse at 12% 8%,rgba(62,91,128,.16),tran
  .responsibilities-modal-content{padding:14px 20px 28px}
  .responsibilities-modal-list li{font-size:13px;line-height:1.7;padding:11px 0 11px 5px}
 }
+
+/* Keep collapsed job responsibilities strictly limited to three */
+.job ul:not(.chips) > li[hidden]{display:none!important}
+.responsibilities-trigger{margin-top:12px;font-size:12px;letter-spacing:.01em}

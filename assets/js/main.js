@@ -375,12 +375,19 @@ if('IntersectionObserver' in window&&careerRows.length){const careerSpy=new Inte
     body:new FormData(form),
     headers:{Accept:'application/json'}
    });
-   if(!response.ok)throw new Error('Submission failed');
+   let result={};
+   try{result=await response.json();}catch(parseError){}
+   if(!response.ok){
+    const detail=Array.isArray(result.errors)?result.errors.map(item=>item.message).filter(Boolean).join(' '):'';
+    throw new Error(detail||'Form service returned error '+response.status+'. Check that the form is active and the recipient email is verified in Formspree.');
+   }
    form.reset();
    status.textContent='Thank you. Your message has been sent successfully.';
    status.classList.add('is-success');
   }catch(error){
-   status.textContent='Sorry, your message could not be sent. Please try again or contact me through LinkedIn.';
+   status.textContent=error.message&&error.message!=='Failed to fetch'
+    ?'Unable to send: '+error.message
+    :'Unable to connect to the form service. Please check your connection and try again. If this continues, verify your Formspree form and recipient email.';
    status.classList.add('is-error');
   }finally{
    submit.disabled=false;

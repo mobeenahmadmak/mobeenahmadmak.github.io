@@ -354,3 +354,37 @@ if('IntersectionObserver' in window&&careerRows.length){const careerSpy=new Inte
   }
  });
 })();
+
+
+/* Accessible copy-email action with a legacy clipboard fallback */
+(()=>{
+ const button=document.querySelector('[data-copy-email]');
+ const status=document.getElementById('copyEmailStatus');
+ if(!button||!status)return;
+ const email=button.dataset.copyEmail;
+ const label=button.querySelector('span');
+ button.addEventListener('click',async()=>{
+  try{
+   if(navigator.clipboard&&window.isSecureContext){
+    await navigator.clipboard.writeText(email);
+   }else{
+    const field=document.createElement('textarea');
+    field.value=email;
+    field.setAttribute('readonly','');
+    field.style.position='fixed';
+    field.style.opacity='0';
+    field.style.pointerEvents='none';
+    document.body.appendChild(field);
+    field.select();
+    const copied=document.execCommand('copy');
+    field.remove();
+    if(!copied)throw new Error('Clipboard unavailable');
+   }
+   status.textContent='Email address copied to clipboard.';
+   label.textContent='Copied!';
+  }catch(error){
+   status.textContent='Unable to copy automatically. Please use the Email me link.';
+   label.textContent='Copy email';
+  }
+ });
+})();

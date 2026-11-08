@@ -1946,3 +1946,8 @@ button{touch-action:manipulation}
   .topbar .nav,
   .topbar.scrolled .nav{height:74px}
 }
+
+
+/* Extend the experience timeline rail to the full end of the final career card. */
+.timeline:before,
+.timeline>.rail-fill{bottom:0}

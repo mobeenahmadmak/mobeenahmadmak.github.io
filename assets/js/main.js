@@ -148,7 +148,7 @@ function updateScroll(){
   const markerSize=parseFloat(markerStyle.width)||12;
   const markerY=active.getBoundingClientRect().top+markerTop+(markerSize/2);
   const railStart=box.top+8;
-  const railLength=Math.max(1,box.height-16);
+  const railLength=Math.max(1,box.height-8);
   const fill=Math.max(0,Math.min((markerY-railStart)/railLength,1));
   railFill.style.transform=`scaleY(${fill})`;
  }else{

@@ -55,8 +55,10 @@ if(ticks)tickYears.forEach(year=>{const label=document.createElement('span');lab
 // Sector chart
 document.querySelectorAll('[data-ranges]').forEach(item=>{
  const months=item.dataset.ranges.split(',').reduce((sum,range)=>{const [a,b]=range.split(':');return sum+span(a,b)},0);
- item.querySelector('.val').textContent=formatMonths(months);
- document.querySelector(`.seg[data-sector="${item.dataset.sector}"]`).style.setProperty('--w',months);
+ const value=item.querySelector('.val');
+ const segment=document.querySelector(`.seg[data-sector="${item.dataset.sector}"]`);
+ if(value)value.textContent=formatMonths(months);
+ if(segment)segment.style.setProperty('--w',months);
 });
 
 // Collapsible responsibilities
@@ -169,7 +171,7 @@ if('IntersectionObserver' in window){
 /* Lightweight hero depth motion, disabled for touch and reduced-motion users */
 if(!reduceMotion&&matchMedia('(hover:hover) and (pointer:fine)').matches){
  const hero=document.querySelector('.hero');
- const depthItems=[...document.querySelectorAll('.hero-layer[data-depth],.hero-portrait [data-depth]')];
+ const depthItems=[...document.querySelectorAll('.hero-layer[data-depth],.hero-portrait [data-depth]')].filter(item=>item instanceof HTMLElement);
  let pointerFrame=0,lastX=0,lastY=0;
  hero?.addEventListener('pointermove',event=>{
   const rect=hero.getBoundingClientRect();
@@ -208,7 +210,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
 // Interactive finance capability panels. Visual bars are illustrative, not company results.
 const financeContent={reporting:{index:'01 / FINANCIAL REPORTING',title:'Clarity, accuracy and timely close.',copy:'Monthly, quarterly and annual closing, IFRS financial statements, reconciliations and management reporting.',tags:['IFRS','Period close','Management reports']},planning:{index:'02 / FP&A',title:'Forward-looking financial insight.',copy:'Budgeting, forecasting, variance analysis and performance monitoring to support informed business decisions.',tags:['Budgeting','Forecasting','Variance analysis']},treasury:{index:'03 / TREASURY',title:'Visibility over cash and liquidity.',copy:'Cash flow forecasting, liquidity planning, banking operations and working capital management.',tags:['Cash flow','Liquidity','Working capital']},controls:{index:'04 / FINANCIAL CONTROL',title:'Reliable processes and accountability.',copy:'Internal controls, account reconciliations, audit coordination, VAT reporting and ZATCA compliance.',tags:['Internal controls','Audit','VAT & ZATCA']}};
 const financeTabs=[...document.querySelectorAll('[data-finance-tab]')],financePanel=document.getElementById('finance-panel');
-financeTabs.forEach(tab=>tab.addEventListener('click',()=>{const item=financeContent[tab.dataset.financeTab];if(!item||!financePanel)return;financeTabs.forEach(btn=>{const active=btn===tab;btn.classList.toggle('active',active);btn.setAttribute('aria-selected',String(active));});financePanel.querySelector('.finance-panel-index').textContent=item.index;financePanel.querySelector('h4').textContent=item.title;financePanel.querySelector('.finance-panel-copy>p').textContent=item.copy;financePanel.querySelector('.finance-tags').replaceChildren(...item.tags.map(label=>{const span=document.createElement('span');span.textContent=label;return span;}));financePanel.querySelector('.finance-bars').animate([{opacity:.45,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{duration:260,easing:'ease-out'});}));
+financeTabs.forEach(tab=>tab.addEventListener('click',()=>{const item=financeContent[tab.dataset.financeTab];if(!item||!financePanel)return;financeTabs.forEach(btn=>{const active=btn===tab;btn.classList.toggle('active',active);btn.setAttribute('aria-selected',String(active));});financePanel.querySelector('.finance-panel-index').textContent=item.index;financePanel.querySelector('h4').textContent=item.title;financePanel.querySelector('.finance-panel-copy>p').textContent=item.copy;financePanel.querySelector('.finance-tags').replaceChildren(...item.tags.map(label=>{const span=document.createElement('span');span.textContent=label;return span;}));if(!reduceMotion){const bars=financePanel.querySelector('.finance-bars');if(bars&&typeof bars.animate==='function')bars.animate([{opacity:.45,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{duration:260,easing:'ease-out'});}}));
 // Highlight the career milestone currently in view.
 const careerRows=[...document.querySelectorAll('.g-row')];
 if('IntersectionObserver' in window&&careerRows.length){const careerSpy=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){careerRows.forEach(row=>row.removeAttribute('aria-current'));const match=careerRows.find(row=>row.hash===`#${entry.target.id}`);match?.setAttribute('aria-current','true');}}),{rootMargin:'-35% 0px -55% 0px'});careerRows.forEach(row=>{const target=document.querySelector(row.hash);if(target)careerSpy.observe(target);});}

@@ -1912,3 +1912,32 @@ button{touch-action:manipulation}
 /* Back-to-top is a page-wide scroll control, not tied to individual sections. */
 .scroll-top{pointer-events:none}
 .scroll-top.visible{pointer-events:auto}
+
+
+/* Stabilise sticky header: scrolling changes its finish, never its geometry. */
+.topbar .nav,
+.topbar.scrolled .nav{
+  height:82px;
+  transition:none;
+}
+.topbar .brand,
+.topbar.scrolled .brand{
+  transform:none;
+  transition:none;
+}
+.topbar{
+  transition:background-color .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+@media(max-width:760px){
+  .topbar .nav,
+  .topbar.scrolled .nav{
+    height:66px;
+  }
+  .topbar .links,
+  .topbar.scrolled .links{
+    top:100%;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .topbar{transition:none!important}
+}

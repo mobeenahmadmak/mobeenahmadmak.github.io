@@ -1872,3 +1872,30 @@ button{touch-action:manipulation}
 @media(prefers-reduced-motion:reduce){
  .timeline>.early-career:before{box-shadow:0 0 0 3px rgba(234,215,178,.12)}
 }
+
+
+/* Fix narrow-screen overflow in career timeline cards */
+@media(max-width:760px){
+ .timeline{width:100%;min-width:0;box-sizing:border-box}
+ .timeline>.job,.timeline>.early-career{
+  width:100%;max-width:100%;min-width:0;box-sizing:border-box
+ }
+ .timeline>.job{
+  display:grid;grid-template-columns:minmax(0,1fr)!important;
+  gap:9px;padding:20px 17px
+ }
+ .timeline>.job>div,.timeline .job-date,.timeline .job h3,
+ .timeline .job .company,.timeline .job ul,.timeline .job p{
+  min-width:0;max-width:100%;overflow-wrap:anywhere
+ }
+ .timeline .job ul.chips{display:flex;flex-wrap:wrap;gap:6px}
+ .timeline .job ul.chips li{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+ .timeline>.early-career{padding-left:15px;padding-right:15px}
+ .timeline .early-career-grid,.timeline .early-career-item,
+ .timeline .early-career-details{min-width:0;max-width:100%}
+}
+@media(max-width:420px){
+ .timeline{padding-left:25px}
+ .timeline>.job{padding:17px 14px}
+ .timeline>.early-career{padding:16px 12px}
+}

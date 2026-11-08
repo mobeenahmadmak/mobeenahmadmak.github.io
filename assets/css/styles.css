@@ -1899,3 +1899,27 @@ button{touch-action:manipulation}
  .timeline>.job{padding:17px 14px}
  .timeline>.early-career{padding:16px 12px}
 }
+
+
+/* Keep the career progress rail and all milestone markers in sync */
+.timeline>.early-career:before{
+ background:#111d2d;
+ border-color:#718096;
+ box-shadow:0 0 0 4px rgba(53,66,85,.22);
+ transition:background .25s ease,border-color .25s ease,box-shadow .25s ease,transform .25s ease;
+}
+.timeline>.early-career.is-active:before{
+ background:var(--gold2);
+ border-color:var(--gold2);
+ box-shadow:0 0 0 4px rgba(234,215,178,.14),0 0 13px rgba(234,215,178,.3);
+ transform:scale(1.08);
+}
+.timeline .job.is-active:after{
+ background:var(--gold2);
+ border-color:var(--gold2);
+ box-shadow:0 0 0 4px rgba(234,215,178,.14),0 0 13px rgba(234,215,178,.3);
+ transform:scale(1.08);
+}
+@media(prefers-reduced-motion:reduce){
+ .timeline>.early-career:before,.timeline .job:after{transition:none}
+}

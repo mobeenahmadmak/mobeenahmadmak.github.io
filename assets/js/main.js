@@ -107,15 +107,12 @@ let scrollQueued=false;
 function updateScroll(){
  scrollQueued=false;
  const max=root.scrollHeight-innerHeight;
- progress.style.transform=`scaleX(${max>0?Math.min(scrollY/max,1):0})`;
- topbar.classList.toggle('scrolled',scrollY>12);
+ if(progress)progress.style.transform=`scaleX(${max>0?Math.min(scrollY/max,1):0})`;
+ topbar?.classList.toggle('scrolled',scrollY>12);
  if(!timeline||!railFill)return;
  const box=timeline.getBoundingClientRect();
  const milestones=[...timeline.querySelectorAll('.job,.early-career')];
  const focusY=innerHeight*.42;
- const done=box.height>0?(focusY-box.top)/box.height:0;
- railFill.style.transform=`scaleY(${Math.max(0,Math.min(done,1))})`;
- // Use the same reading position for the gold rail and active milestone.
  let active=milestones.find(item=>{
   const rect=item.getBoundingClientRect();
   return rect.top<=focusY&&rect.bottom>focusY;
@@ -136,6 +133,21 @@ function updateScroll(){
    else item.removeAttribute('aria-current');
   }
  });
+ // End the gold rail at the active marker's centre, not at an arbitrary
+ // viewport position. This keeps the line visually connected to the gold dot.
+ if(active){
+  const isEarly=active.classList.contains('early-career');
+  const markerStyle=getComputedStyle(active,isEarly?'::before':'::after');
+  const markerTop=parseFloat(markerStyle.top)||0;
+  const markerSize=parseFloat(markerStyle.width)||12;
+  const markerY=active.getBoundingClientRect().top+markerTop+(markerSize/2);
+  const railStart=box.top+8;
+  const railLength=Math.max(1,box.height-16);
+  const fill=Math.max(0,Math.min((markerY-railStart)/railLength,1));
+  railFill.style.transform=`scaleY(${fill})`;
+ }else{
+  railFill.style.transform='scaleY(0)';
+ }
 }
 function scheduleScrollUpdate(){if(!scrollQueued){scrollQueued=true;requestAnimationFrame(updateScroll)}}
 addEventListener('scroll',scheduleScrollUpdate,{passive:true});

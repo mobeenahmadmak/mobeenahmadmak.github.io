@@ -1941,3 +1941,8 @@ button{touch-action:manipulation}
 @media(prefers-reduced-motion:reduce){
   .topbar{transition:none!important}
 }
+
+@media(min-width:761px) and (max-width:1024px){
+  .topbar .nav,
+  .topbar.scrolled .nav{height:74px}
+}

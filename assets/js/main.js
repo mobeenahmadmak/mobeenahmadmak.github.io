@@ -109,7 +109,12 @@ function updateScroll(){
  const max=root.scrollHeight-innerHeight;
  if(progress)progress.style.transform=`scaleX(${max>0?Math.min(scrollY/max,1):0})`;
  topbar?.classList.toggle('scrolled',scrollY>12);
- scrollTopButton?.classList.toggle('visible',scrollY>400);
+ const showTopButton=scrollY>400;
+ if(scrollTopButton){
+  scrollTopButton.classList.toggle('visible',showTopButton);
+  scrollTopButton.setAttribute('aria-hidden',String(!showTopButton));
+  scrollTopButton.tabIndex=showTopButton?0:-1;
+ }
  if(!timeline||!railFill)return;
  const box=timeline.getBoundingClientRect();
  const milestones=[...timeline.querySelectorAll('.job,.early-career')];

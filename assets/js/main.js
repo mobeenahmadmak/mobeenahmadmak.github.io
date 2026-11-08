@@ -3,34 +3,32 @@ const loaderStart=performance.now();
 const dismissLoader=()=>{const remaining=Math.max(0,500-(performance.now()-loaderStart));setTimeout(()=>loader?.classList.add('is-hidden'),remaining);};
 if(loader){window.addEventListener('load',dismissLoader,{once:true});setTimeout(dismissLoader,500);}
 const menu=document.getElementById('menu'),links=document.getElementById('links');
-menu.setAttribute('aria-controls','links');
-const closeMenu=(restoreFocus=false)=>{
- const wasOpen=links.classList.contains('open');
- links.classList.remove('open');
- document.body.classList.remove('menu-open');
- menu.setAttribute('aria-expanded','false');
- menu.setAttribute('aria-label','Open navigation menu');
- menu.textContent='☰';
- if(restoreFocus&&wasOpen)menu.focus();
-};
-menu.addEventListener('click',()=>{
- const open=links.classList.toggle('open');
- document.body.classList.toggle('menu-open',open);
- menu.setAttribute('aria-expanded',String(open));
- menu.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');
- menu.textContent=open?'×':'☰';
-});
-links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>closeMenu()));
-document.addEventListener('keydown',event=>{
- if(event.key==='Escape'&&links.classList.contains('open'))closeMenu(true);
-});
-window.addEventListener('resize',()=>{if(window.innerWidth>760)closeMenu()});
+if(menu&&links){
+ menu.setAttribute('aria-controls','links');
+ const closeMenu=(restoreFocus=false)=>{
+  const wasOpen=links.classList.contains('open');
+  links.classList.remove('open');
+  document.body.classList.remove('menu-open');
+  menu.setAttribute('aria-expanded','false');
+  menu.setAttribute('aria-label','Open navigation menu');
+  menu.textContent='☰';
+  if(restoreFocus&&wasOpen)menu.focus();
+ };
+ menu.addEventListener('click',()=>{
+  const open=links.classList.toggle('open');
+  document.body.classList.toggle('menu-open',open);
+  menu.setAttribute('aria-expanded',String(open));
+  menu.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');
+  menu.textContent=open?'×':'☰';
+ });
+ links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>closeMenu()));
+ document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&links.classList.contains('open'))closeMenu(true);
+ });
+ window.addEventListener('resize',()=>{if(window.innerWidth>760)closeMenu()},{passive:true});
+}
 document.getElementById('year').textContent=new Date().getFullYear();
 const scrollTopButton=document.getElementById('scrollTop');
-const toggleScrollTop=()=>scrollTopButton.classList.toggle('visible',window.scrollY>400);
-window.addEventListener('scroll',toggleScrollTop,{passive:true});
-toggleScrollTop();
-scrollTopButton.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 const root=document.documentElement,reduceMotion=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
 // Dates and durations
@@ -109,6 +107,7 @@ function updateScroll(){
  const max=root.scrollHeight-innerHeight;
  if(progress)progress.style.transform=`scaleX(${max>0?Math.min(scrollY/max,1):0})`;
  topbar?.classList.toggle('scrolled',scrollY>12);
+ scrollTopButton?.classList.toggle('visible',scrollY>400);
  if(!timeline||!railFill)return;
  const box=timeline.getBoundingClientRect();
  const milestones=[...timeline.querySelectorAll('.job,.early-career')];
@@ -151,7 +150,8 @@ function updateScroll(){
 }
 function scheduleScrollUpdate(){if(!scrollQueued){scrollQueued=true;requestAnimationFrame(updateScroll)}}
 addEventListener('scroll',scheduleScrollUpdate,{passive:true});
-addEventListener('resize',scheduleScrollUpdate);
+addEventListener('resize',scheduleScrollUpdate,{passive:true});
+if(scrollTopButton)scrollTopButton.addEventListener('click',()=>window.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));
 updateScroll();
 
 // Active navigation link

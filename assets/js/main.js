@@ -101,7 +101,7 @@ function animateCount(el){
 }
 if(!reduceMotion)setTimeout(()=>showCounters(document.querySelector('.stats')),500);
 
-// Scroll progress, header state and timeline rail
+// Scroll progress, header state and career timeline rail
 const progress=document.getElementById('progress'),topbar=document.querySelector('.topbar'),timeline=document.querySelector('.timeline'),railFill=document.querySelector('.rail-fill');
 let scrollQueued=false;
 function updateScroll(){
@@ -109,29 +109,32 @@ function updateScroll(){
  const max=root.scrollHeight-innerHeight;
  progress.style.transform=`scaleX(${max>0?Math.min(scrollY/max,1):0})`;
  topbar.classList.toggle('scrolled',scrollY>12);
+ if(!timeline||!railFill)return;
  const box=timeline.getBoundingClientRect();
- const done=(innerHeight*.65-box.top)/box.height;
- railFill.style.transform=`scaleY(${Math.max(0,Math.min(done,1))})`;
- // Highlight the role nearest the active reading position, not permanently the first role.
- const jobs=[...timeline.querySelectorAll('.job')];
+ const milestones=[...timeline.querySelectorAll('.job,.early-career')];
  const focusY=innerHeight*.42;
- let active=jobs.find(job=>{
-  const rect=job.getBoundingClientRect();
+ const done=box.height>0?(focusY-box.top)/box.height:0;
+ railFill.style.transform=`scaleY(${Math.max(0,Math.min(done,1))})`;
+ // Use the same reading position for the gold rail and active milestone.
+ let active=milestones.find(item=>{
+  const rect=item.getBoundingClientRect();
   return rect.top<=focusY&&rect.bottom>focusY;
  });
- if(!active&&jobs.length){
-  active=jobs.reduce((nearest,job)=>{
-   const rect=job.getBoundingClientRect();
+ if(!active&&milestones.length){
+  active=milestones.reduce((nearest,item)=>{
+   const rect=item.getBoundingClientRect();
    const distance=focusY<rect.top?rect.top-focusY:focusY>rect.bottom?focusY-rect.bottom:0;
-   if(!nearest||distance<nearest.distance)return {job,distance};
+   if(!nearest||distance<nearest.distance)return {item,distance};
    return nearest;
-  },null)?.job;
+  },null)?.item;
  }
- jobs.forEach(job=>{
-  const current=job===active;
-  job.classList.toggle('is-active',current);
-  if(current)job.setAttribute('aria-current','location');
-  else job.removeAttribute('aria-current');
+ milestones.forEach(item=>{
+  const current=item===active;
+  item.classList.toggle('is-active',current);
+  if(item.classList.contains('job')){
+   if(current)item.setAttribute('aria-current','location');
+   else item.removeAttribute('aria-current');
+  }
  });
 }
 function scheduleScrollUpdate(){if(!scrollQueued){scrollQueued=true;requestAnimationFrame(updateScroll)}}

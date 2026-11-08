@@ -1603,33 +1603,6 @@ button{touch-action:manipulation}
 }
 
 
-/* Portfolio contact form */
-#contact .contact{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:start;gap:38px;padding:clamp(24px,4vw,42px)}
-#contact .contact-info{min-width:0}
-#contact .contact-info h2{line-height:1.2}
-#contact .contact-links{margin-top:24px}
-#contact .contact-links a{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
-#contact .contact-links .contact-link-primary{background:rgba(198,165,107,.12);border-color:rgba(198,165,107,.5);color:var(--gold2)}
-#contact .contact-form-wrap{min-width:0;padding:25px;border:1px solid var(--line);border-radius:16px;background:rgba(7,12,19,.48)}
-#contact .contact-form-wrap h3{font:700 19px "Plus Jakarta Sans";margin:0 0 5px;color:var(--text)}
-#contact .contact-form-intro{margin:0 0 20px;color:var(--muted);font-size:12px}
-#contact .contact-form{display:grid;gap:14px}
-#contact .contact-form-row{display:grid;gap:7px}
-#contact .contact-form-row label{font-size:12px;font-weight:600;color:var(--text)}
-#contact .contact-form-row input,#contact .contact-form-row textarea{width:100%;min-width:0;border:1px solid rgba(174,184,197,.22);border-radius:9px;background:#0b111a;color:#f1f4f8;padding:12px 13px;font:400 13px Inter,sans-serif;outline:none;transition:border-color .2s,box-shadow .2s}
-#contact .contact-form-row textarea{resize:vertical;min-height:118px;line-height:1.6}
-#contact .contact-form-row input::placeholder,#contact .contact-form-row textarea::placeholder{color:#8793a2}
-#contact .contact-form-row input:focus,#contact .contact-form-row textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(198,165,107,.13)}
-#contact .contact-submit{justify-self:start;border:1px solid var(--gold);border-radius:30px;background:var(--gold);color:#10151d;padding:11px 19px;font:700 12px Inter,sans-serif;cursor:pointer;transition:transform .2s,opacity .2s}
-#contact .contact-submit:hover{transform:translateY(-1px)}
-#contact .contact-submit:disabled{opacity:.65;cursor:wait;transform:none}
-#contact .contact-form-status{min-height:18px;margin:0;font-size:12px;color:var(--muted)}
-#contact .contact-form-status.is-success{color:#91d5ad}
-#contact .contact-form-status.is-error{color:#f0a0a0}
-#contact .contact-form-trap{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
-@media(max-width:760px){#contact .contact{grid-template-columns:minmax(0,1fr);gap:26px}#contact .contact-form-wrap{padding:20px}}
-@media(prefers-reduced-motion:reduce){#contact .contact-form-row input,#contact .contact-form-row textarea,#contact .contact-submit{transition:none}}
-
 /* Compact contact section after removing the form */
 #contact .contact{display:flex;align-items:center;justify-content:space-between;gap:32px}
 #contact .contact-info{width:100%;max-width:850px}

@@ -1907,3 +1907,8 @@ button{touch-action:manipulation}
 @media(prefers-reduced-motion:reduce){
   .g-bar{transition:none!important}
 }
+
+
+/* Back-to-top is a page-wide scroll control, not tied to individual sections. */
+.scroll-top{pointer-events:none}
+.scroll-top.visible{pointer-events:auto}

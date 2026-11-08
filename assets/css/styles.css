@@ -1838,3 +1838,37 @@ button{touch-action:manipulation}
     transition:none!important;
   }
 }
+
+
+/* Continuous career rail and early-career milestone */
+.timeline:before{
+ background:linear-gradient(180deg,
+  rgba(234,215,178,.52) 0%,
+  rgba(198,165,107,.38) 58%,
+  rgba(198,165,107,.28) 100%);
+}
+.timeline>.early-career{
+ position:relative;
+ margin-top:0;
+}
+.timeline>.early-career:before{
+ content:"";
+ position:absolute;
+ left:-30px;
+ top:25px;
+ width:12px;
+ height:12px;
+ box-sizing:border-box;
+ border-radius:50%;
+ background:var(--gold2);
+ border:2px solid var(--gold2);
+ box-shadow:0 0 0 4px rgba(234,215,178,.14),0 0 13px rgba(234,215,178,.28);
+ z-index:1;
+}
+@media(max-width:760px){
+ .timeline:before{background:linear-gradient(180deg,rgba(234,215,178,.52),rgba(198,165,107,.28))}
+ .timeline>.early-career:before{left:-28px;top:21px;width:11px;height:11px}
+}
+@media(prefers-reduced-motion:reduce){
+ .timeline>.early-career:before{box-shadow:0 0 0 3px rgba(234,215,178,.12)}
+}

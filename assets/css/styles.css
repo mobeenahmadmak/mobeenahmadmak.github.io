@@ -2124,3 +2124,15 @@ body{
 @media(prefers-reduced-motion:reduce){
  .skill,.project,.edu,.btn,.job-more{transition:none!important}
 }
+
+
+/* Keep the professional snapshot visible within the desktop first screen */
+@media (min-width: 1025px) {
+  .hero{padding:28px 0 28px}
+  .hero h1{font-size:clamp(36px,3.35vw,46px);line-height:1.08;margin:10px 0 12px}
+  .hero-tag{font-size:clamp(15px,1.35vw,18px);margin:0 0 9px}
+  .hero-copy{font-size:14px;line-height:1.62}
+  .hero-meta{margin:14px 0 18px;gap:8px 18px}
+  .stats{margin-top:24px}
+  .stat{padding-top:14px}
+}

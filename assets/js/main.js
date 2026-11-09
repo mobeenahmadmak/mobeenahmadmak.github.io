@@ -61,31 +61,34 @@ document.querySelectorAll('[data-ranges]').forEach(item=>{
  if(segment)segment.style.setProperty('--w',months);
 });
 
-// Inline expandable responsibilities: reveal the full list in place, never in a modal.
+// Inline expandable responsibilities and selected achievements.
 document.querySelectorAll('.job').forEach((job,index)=>{
- const list=job.querySelector(':scope > div > ul:not(.chips):not(.achievement-list)');
- if(!list)return;
- const items=list.querySelectorAll(':scope > li').length;
- if(items<=3)return;
- list.classList.add('collapsed');
- list.id=list.id||`job-duties-${index}`;
- const button=document.createElement('button');
- button.type='button';
- button.className='job-more';
- button.setAttribute('aria-expanded','false');
- button.setAttribute('aria-controls',list.id);
- const setLabel=open=>{
-  button.innerHTML=`<span>${open?'Show fewer responsibilities':'Show all responsibilities'} </span><svg class="ico" aria-hidden="true"><use href="#i-chevron"/></svg>`;
- };
- setLabel(false);
- button.addEventListener('click',()=>{
-  const open=list.classList.toggle('collapsed')===false;
-  list.classList.toggle('opened',open);
-  button.setAttribute('aria-expanded',String(open));
-  setLabel(open);
-  scheduleScrollUpdate();
+ const lists=[...job.querySelectorAll(':scope > div > ul:not(.chips)')];
+ lists.forEach((list,listIndex)=>{
+  const items=list.querySelectorAll(':scope > li').length;
+  if(items<=3)return;
+  list.classList.add('collapsed');
+  list.id=list.id||`job-list-${index}-${listIndex}`;
+  const isAchievements=list.classList.contains('achievement-list');
+  const button=document.createElement('button');
+  button.type='button';
+  button.className='job-more';
+  button.setAttribute('aria-expanded','false');
+  button.setAttribute('aria-controls',list.id);
+  const setLabel=open=>{
+   const label=open?'Show fewer':isAchievements?'Show all achievements':'Show all responsibilities';
+   button.innerHTML=`<span>${label}</span><svg class="ico" aria-hidden="true"><use href="#i-chevron"/></svg>`;
+  };
+  setLabel(false);
+  button.addEventListener('click',()=>{
+   const open=list.classList.toggle('collapsed')===false;
+   list.classList.toggle('opened',open);
+   button.setAttribute('aria-expanded',String(open));
+   setLabel(open);
+   scheduleScrollUpdate();
+  });
+  list.after(button);
  });
- list.after(button);
 });
 
 // Scroll reveal

@@ -1956,3 +1956,9 @@ button{touch-action:manipulation}
 .job .achievement-heading{margin:22px 0 8px;padding-top:15px;border-top:1px solid var(--line);font:700 13px "Plus Jakarta Sans",sans-serif;color:var(--gold2)}
 .job ul.achievement-list{margin-top:7px}
 .job ul.achievement-list li{padding-left:2px}
+
+
+/* Hero intro animated finance trend: brighter, more prominent gold line */
+.hero-chart .trend{stroke:#f3bd55;stroke-opacity:1;stroke-width:4.5;filter:drop-shadow(0 0 3px rgba(243,189,85,.95)) drop-shadow(0 0 9px rgba(243,189,85,.62))}
+.hero-chart circle{fill:#ffd77a;fill-opacity:1;filter:drop-shadow(0 0 4px rgba(255,205,92,.95)) drop-shadow(0 0 10px rgba(243,189,85,.72))}
+@media(max-width:760px){.hero-chart{opacity:.42}.hero-chart .trend{stroke-width:4}}

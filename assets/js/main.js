@@ -61,17 +61,30 @@ document.querySelectorAll('[data-ranges]').forEach(item=>{
  if(segment)segment.style.setProperty('--w',months);
 });
 
-// Collapsible responsibilities
-document.querySelectorAll('.job ul:not(.chips)').forEach((list,index)=>{
- const items=list.children.length;
+// Inline expandable responsibilities: reveal the full list in place, never in a modal.
+document.querySelectorAll('.job').forEach((job,index)=>{
+ const list=job.querySelector(':scope > div > ul:not(.chips):not(.achievement-list)');
+ if(!list)return;
+ const items=list.querySelectorAll(':scope > li').length;
  if(items<=3)return;
  list.classList.add('collapsed');
  list.id=list.id||`job-duties-${index}`;
  const button=document.createElement('button');
- button.type='button';button.className='job-more';button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls',list.id);
- const setLabel=open=>{button.innerHTML=`<span>${open?'Show fewer':`Show all ${items} responsibilities`}</span><svg class="ico" aria-hidden="true"><use href="#i-chevron"/></svg>`};
+ button.type='button';
+ button.className='job-more';
+ button.setAttribute('aria-expanded','false');
+ button.setAttribute('aria-controls',list.id);
+ const setLabel=open=>{
+  button.innerHTML=`<span>${open?'Show fewer responsibilities':'Show all responsibilities'} </span><svg class="ico" aria-hidden="true"><use href="#i-chevron"/></svg>`;
+ };
  setLabel(false);
- button.addEventListener('click',()=>{const open=list.classList.toggle('collapsed')===false;list.classList.toggle('opened',open);button.setAttribute('aria-expanded',String(open));setLabel(open);scheduleScrollUpdate()});
+ button.addEventListener('click',()=>{
+  const open=list.classList.toggle('collapsed')===false;
+  list.classList.toggle('opened',open);
+  button.setAttribute('aria-expanded',String(open));
+  setLabel(open);
+  scheduleScrollUpdate();
+ });
  list.after(button);
 });
 
@@ -279,64 +292,6 @@ if('IntersectionObserver' in window&&careerRows.length){const careerSpy=new Inte
  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&modal.open)closeModal();});
 })();
 
-
-/* Show three key responsibilities in each role and all items in a modal */
-(()=>{
- const modal=document.getElementById('responsibilitiesModal');
- if(!modal)return;
- const modalTitle=modal.querySelector('#responsibilitiesModalTitle');
- const list=modal.querySelector('.responsibilities-modal-list');
- const close=modal.querySelector('.responsibilities-modal-close');
- let lastTrigger=null;
- modal.addEventListener('keydown',event=>{
-  if(event.key!=='Tab')return;
-  const nodes=[...modal.querySelectorAll('button:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])')].filter(node=>node.getClientRects().length);
-  if(!nodes.length){event.preventDefault();return;}
-  const first=nodes[0],last=nodes[nodes.length-1];
-  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
-  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
- });
- document.querySelectorAll('.job').forEach(job=>{
-  const responsibilities=[...job.querySelectorAll(':scope > div > ul:not(.chips)')][0];
-  if(!responsibilities)return;
-  // Remove any previous or cached action labels so only one control can remain.
-  let sibling=responsibilities.nextElementSibling;
-  while(sibling&&!sibling.matches('ul,article')){
-   if(sibling.matches('button,a')||sibling.classList.contains('responsibilities-trigger'))sibling.remove();
-   sibling=sibling.nextElementSibling;
-  }
-  const items=[...responsibilities.querySelectorAll(':scope > li')];
-  items.forEach((item,index)=>{
-   item.hidden=index>=3;
-   item.style.display=index>=3?'none':'';
-  });
-  if(items.length<=3)return;
-  const heading=job.querySelector('h3')?.textContent.trim()||'Role';
-  const company=job.querySelector('.company')?.textContent.trim().replace(/\s+/g,' ')||'';
-  const trigger=document.createElement('button');
-  trigger.type='button';
-  trigger.className='responsibilities-trigger';
-  trigger.innerHTML='View all <span aria-hidden="true">↗</span>';
-  trigger.setAttribute('aria-label','View all '+items.length+' responsibilities for '+heading);
-  responsibilities.insertAdjacentElement('afterend',trigger);
-  trigger.addEventListener('click',()=>{
-   lastTrigger=trigger;
-   modalTitle.textContent=heading;
-   list.replaceChildren(...items.map(item=>{
-    const li=document.createElement('li');
-    li.textContent=item.textContent.trim();
-    return li;
-   }));
-   modal.querySelector('.responsibilities-modal-kicker').textContent=company?company.toUpperCase():'PROFESSIONAL EXPERIENCE';
-   modal.showModal();
-   close.focus();
-  });
- });
- const closeModal=()=>{if(modal.open)modal.close();if(lastTrigger)lastTrigger.focus();};
- close.addEventListener('click',closeModal);
- modal.addEventListener('click',event=>{if(event.target===modal)closeModal();});
- modal.addEventListener('close',()=>{if(lastTrigger)lastTrigger.focus();});
-})();
 
 /* Compact Get in Touch dropdowns */
 (()=>{

@@ -1951,3 +1951,8 @@ button{touch-action:manipulation}
 /* Extend the experience timeline rail to the full end of the final career card. */
 .timeline:before,
 .timeline>.rail-fill{bottom:0}
+
+/* Recruiter-focused achievement highlights */
+.job .achievement-heading{margin:22px 0 8px;padding-top:15px;border-top:1px solid var(--line);font:700 13px "Plus Jakarta Sans",sans-serif;color:var(--gold2)}
+.job ul.achievement-list{margin-top:7px}
+.job ul.achievement-list li{padding-left:2px}
